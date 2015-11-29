@@ -2,6 +2,10 @@
 	"groups":[
 	{
 		"keys":"checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,common_json",
+		"name":"common"
+	},
+	{
+		"keys":"preload_json",
 		"name":"preload"
 	}],
 	"resources":[
@@ -125,5 +129,11 @@
 		"subkeys":"cube_png,loading_panel_png",
 		"type":"sheet",
 		"url":"assets/common/ui/common.json"
+	},
+	{
+		"name":"preload_json",
+		"subkeys":"leaf_10c_png,logo_15c_png,pgreenbg_png,scir_png",
+		"type":"sheet",
+		"url":"assets/preload/ui/preload.json"
 	}]
 }

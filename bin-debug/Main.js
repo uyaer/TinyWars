@@ -129,7 +129,7 @@ var Main = (function (_super) {
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     };
     p.onButtonClick = function (e) {
-        NetLoading.instance.show();
+        SceneLoading.instance.load("common", null);
         console.log("....");
     };
     return Main;

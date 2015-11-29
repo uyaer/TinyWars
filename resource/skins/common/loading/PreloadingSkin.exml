@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="PreloadingSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="sCir1" width="33" height="35" x="320" y="362">
+		<e:Image source="scir_png" x="-17" y="-17" locked="true"/>
+	</e:Group>
+	<e:Group id="sCir2" width="45" height="45" x="320" y="431">
+		<e:Image source="scir_png" y="-17" x="-17"/>
+	</e:Group>
+	<e:Rect id="pBg" width="400" height="2" y="446" fillColor="0xFFFFFF" horizontalCenter="0"/>
+	<e:Rect id="pFront" y="446" width="400" height="2" fillColor="0x49DC0F" horizontalCenter="0"/>
+	<e:Group id="logo" width="53" height="53" x="320" y="445">
+		<e:Image source="logo_15c_png" x="-75" y="-113" locked="true"/>
+	</e:Group>
+	<e:Group id="leaf" width="89" height="86" x="400" y="955" rotation="-10">
+		<e:Image source="leaf_10c_png" x="-251" y="-517" locked="true"/>
+	</e:Group>
+</e:Skin>

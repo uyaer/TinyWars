@@ -144,7 +144,7 @@ class Main extends eui.UILayer {
     }
 
     private onButtonClick(e:egret.TouchEvent) {
-        NetLoading.instance.show();
+        SceneLoading.instance.load("common",null);
         console.log("....")
     }
 }

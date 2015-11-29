@@ -48,3 +48,7 @@ declare module skins{
 }
 declare class PanelLoadingSkin extends eui.Skin{
 }
+declare class PreloadingSkin extends eui.Skin{
+}
+declare class SceneLoadingSkin extends eui.Skin{
+}
