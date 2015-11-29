@@ -126,7 +126,7 @@
 	},
 	{
 		"name":"common_json",
-		"subkeys":"cube_png,loading_panel_png",
+		"subkeys":"loading_panel_png,loading_scene_logo_png",
 		"type":"sheet",
 		"url":"assets/common/ui/common.json"
 	},
