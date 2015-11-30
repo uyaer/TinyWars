@@ -36,6 +36,17 @@ class Main extends eui.UILayer {
 
     protected createChildren():void {
         super.createChildren();
+
+        //发布版屏蔽本地和非uyaer访问
+        if (RELEASE) {
+            var url = location.href;
+            if (url.indexOf("2.168.") != -1
+                || url.indexOf("ocalho") > -1
+                || url.indexOf("yaer") == -1) {
+                return;
+            }
+        }
+
         //inject the custom material parser
         //注入自定义的素材解析器
         var assetAdapter = new AssetAdapter();
@@ -144,7 +155,7 @@ class Main extends eui.UILayer {
     }
 
     private onButtonClick(e:egret.TouchEvent) {
-        SceneLoading.instance.load("common",null);
+        SceneLoading.instance.load("common", null);
         console.log("....")
     }
 }
