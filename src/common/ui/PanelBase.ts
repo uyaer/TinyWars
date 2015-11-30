@@ -23,6 +23,8 @@ class PanelBase extends eui.Panel {
     protected onRemoved() {
         this.removeEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoved, this);
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTap, this);
+        UIUtils.removeButtonScaleEffects(this);
+
         this.destroy();
     }
 
@@ -80,7 +82,6 @@ class PanelBase extends eui.Panel {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
             this.skinName = null;
             this.skinName = this.uiSkinName;
-            GameLayerManager.instance.uiLayer.addChild(this);
         }
     }
 

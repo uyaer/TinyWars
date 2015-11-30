@@ -30,6 +30,10 @@ var Player = (function () {
         this._vo.fur = data["fur"];
         this._vo.horse = data["horse"];
         this._vo.metal = data["metal"];
+        this._vo.cup = data["cup"];
+        this._vo.gold = data["gold"];
+        this._vo.gem = data["gem"];
+        this._vo.building.parse(data["building"]);
     };
     /**
      * 网络保存

@@ -23,10 +23,11 @@ var SceneLoading = (function (_super) {
         this.resGroup = resGroup;
         this.enterSceneCls = cls;
         GameLayerManager.instance.tipLayer.addChild(this);
+        SceneManager.instance.removeScene();
+        this.beganLoadResGroup();
     };
     p.createChildren = function () {
         _super.prototype.createChildren.call(this);
-        this.beganLoadResGroup();
     };
     /**
      * 开始加载资源
@@ -54,6 +55,7 @@ var SceneLoading = (function (_super) {
         if (e.groupName == this.resGroup) {
             var p = e.itemsLoaded / e.itemsTotal;
             var w = p * 400;
+            this.pTF.text = Math.floor(p * 100) + "%";
             egret.Tween.removeTweens(this.pFront);
             egret.Tween.get(this.pFront)
                 .to({ width: w }, 250, egret.Ease.sineOut);
@@ -71,7 +73,7 @@ var SceneLoading = (function (_super) {
     p.removeAllElements = function () {
         var _this = this;
         egret.Tween.get(this)
-            .to({ alpha: 0 }, 300)
+            .to({ alpha: 0 }, 400)
             .call(function () {
             UIUtils.removeSelf(_this);
             SceneManager.instance.runScene(_this.enterSceneCls);

@@ -20,7 +20,7 @@ var UserNet = (function () {
         var user = new Bmob.User();
         user.set("username", openId);
         user.set("password", openId);
-        user.set("dataStr", "{}");
+        user.set("dataStr", "");
         user.signUp(null, {
             success: function (user) {
                 //创建

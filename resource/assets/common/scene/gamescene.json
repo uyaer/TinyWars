@@ -1,0 +1,7 @@
+{"file":"gamescene.png","frames":{
+"scene1_png":{"x":1,"y":1,"w":640,"h":143,"offX":0,"offY":0,"sourceW":640,"sourceH":143},
+"scene2_png":{"x":1,"y":146,"w":640,"h":82,"offX":0,"offY":61,"sourceW":640,"sourceH":143},
+"scene3_png":{"x":1,"y":375,"w":640,"h":53,"offX":0,"offY":23,"sourceW":640,"sourceH":143},
+"scene4_png":{"x":1,"y":311,"w":640,"h":62,"offX":0,"offY":37,"sourceW":640,"sourceH":143},
+"scene5_png":{"x":1,"y":430,"w":640,"h":27,"offX":0,"offY":40,"sourceW":640,"sourceH":143},
+"scene6_png":{"x":1,"y":230,"w":640,"h":79,"offX":0,"offY":0,"sourceW":640,"sourceH":143}}}

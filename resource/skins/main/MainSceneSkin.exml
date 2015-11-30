@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MainSceneSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="pic_background_jpg" locked="true"/>
+	<e:Group id="bottomGroup" width="640" height="98" y="862">
+		<e:Image source="pic_dinfo_png" x="2" bottom="0" locked="true"/>
+		<e:Button id="btnHome" label="按钮" skinName="MenuButtonSkin" horizontalCenter="-269" verticalCenter="6"/>
+		<e:Button id="btnBuilding" label="按钮" skinName="MenuButtonSkin" horizontalCenter="-179" verticalCenter="6"/>
+		<e:Button id="btnTechnology" label="按钮" skinName="MenuButtonSkin" horizontalCenter="-89" verticalCenter="6"/>
+		<e:Button id="btnCamp" label="按钮" skinName="MenuButtonSkin" horizontalCenter="0" verticalCenter="6"/>
+		<e:Button id="btnAlliance" label="按钮" skinName="MenuButtonSkin" horizontalCenter="90" verticalCenter="6"/>
+		<e:Button id="btnShop" label="按钮" skinName="MenuButtonSkin" horizontalCenter="180" verticalCenter="6"/>
+		<e:Button id="btnSetting" label="按钮" skinName="MenuButtonSkin" horizontalCenter="270" verticalCenter="6"/>
+	</e:Group>
+	<e:Group id="topGroup" width="640" height="200">
+		<e:Rect fillColor="0x172431" left="0" right="0" top="0" bottom="0"/>
+	</e:Group>
+</e:Skin>

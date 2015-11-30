@@ -1,0 +1,7 @@
+{"file":"home.png","frames":{
+"board_level_png":{"x":365,"y":300,"w":37,"h":35,"offX":0,"offY":0,"sourceW":37,"sourceH":35},
+"board_name_png":{"x":1,"y":1,"w":381,"h":98,"offX":0,"offY":0,"sourceW":381,"sourceH":98},
+"board_starpic_png":{"x":404,"y":300,"w":25,"h":23,"offX":2,"offY":2,"sourceW":29,"sourceH":27},
+"pic_bigapple_png":{"x":180,"y":300,"w":183,"h":192,"offX":9,"offY":12,"sourceW":192,"sourceH":208},
+"pic_bigstone_png":{"x":1,"y":101,"w":189,"h":197,"offX":3,"offY":11,"sourceW":192,"sourceH":208},
+"pic_bigwood_png":{"x":1,"y":300,"w":177,"h":201,"offX":12,"offY":7,"sourceW":192,"sourceH":208}}}

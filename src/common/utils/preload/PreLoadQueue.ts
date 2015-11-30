@@ -28,7 +28,7 @@ class PreLoadQueue {
      */
     private loadedURL:string[] = [];
 
-    public pushGroup(name:string, priority?:number = 0) {
+    public pushGroup(name:string, priority:number = 0) {
         if (!RES.isGroupLoaded(name)) {
             var arr:RES.ResourceItem[] = RES.getGroupByName(name);
             for (var i = 0; i < arr.length; i++) {
@@ -40,7 +40,7 @@ class PreLoadQueue {
         }
     }
 
-    public pushURL(url:string, priority?:number = 0) {
+    public pushURL(url:string, priority:number = 0) {
         this.queue.push(new ResQueueNode(url, priority));
         //排序
         this.queue.sort((node1, node2)=> {

@@ -28,6 +28,12 @@
     "resource/eui_skins/VSliderSkin.exml",
     "resource/skins/common/loading/PanelLoadingSkin.exml",
     "resource/skins/common/loading/PreloadingSkin.exml",
-    "resource/skins/common/loading/SceneLoadingSkin.exml"
+    "resource/skins/common/loading/SceneLoadingSkin.exml",
+    "resource/skins/login/LoginSceneSkin.exml",
+    "resource/skins/main/button/MenuButtonSkin.exml",
+    "resource/skins/main/MainSceneSkin.exml",
+    "resource/skins/main/item/FirstResItemSkin.exml",
+    "resource/skins/main/item/SecondResItemSkin.exml",
+    "resource/skins/main/item/ThirdResItemSkin.exml"
   ]
 }

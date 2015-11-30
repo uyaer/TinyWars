@@ -40,6 +40,7 @@ class PreLoading extends eui.Panel {
     private sCir2:eui.Group;
     private pBg:eui.Rect;
     private pFront:eui.Rect;
+    private pTF:eui.Label;
     private logo:eui.Group;
     private leaf:eui.Group;
 
@@ -47,6 +48,7 @@ class PreLoading extends eui.Panel {
         super.createChildren();
 
         this.sCir2.visible = this.pBg.visible = this.pFront.visible = this.logo.visible = this.leaf.visible = false;
+        this.pTF.text = "";
 
         this.start();
     }
@@ -138,6 +140,7 @@ class PreLoading extends eui.Panel {
         if (e.groupName == this.resGroup) {
             var p = e.itemsLoaded / e.itemsTotal;
             var w = p * 400;
+            this.pTF.text = Math.floor(p * 100) + "%";
             egret.Tween.removeTweens(this.pFront);
             egret.Tween.get(this.pFront)
                 .to({width: w}, 250, egret.Ease.sineOut);
@@ -150,6 +153,7 @@ class PreLoading extends eui.Panel {
             .to({width: 400}, 250, egret.Ease.sineOut)
             .call(()=> {
                 UIUtils.removeSelf(this.pBg);
+                this.pLabelMoveRight();
                 this.lineMoveRight();
                 this.logoRotation();
                 this.leafMove();
@@ -160,6 +164,12 @@ class PreLoading extends eui.Panel {
         this.pFront.horizontalCenter = NaN;
         egret.Tween.get(this.pFront)
             .to({x: 1200}, 50);
+    }
+
+    private pLabelMoveRight() {
+        this.pTF.horizontalCenter = NaN;
+        egret.Tween.get(this.pTF)
+            .to({x: 700, alpha: 0}, 50);
     }
 
     private logoRotation() {
@@ -179,13 +189,13 @@ class PreLoading extends eui.Panel {
 
     private removeAllElements() {
         egret.Tween.get(this.leaf)
-            .to({rotation: 80}, 200)
+            .to({rotation: 80}, 350)
             .call(UIUtils.removeSelf, this, [this.leaf]);
         egret.Tween.get(this.logo)
-            .to({scaleX: 0, scaleY: 0}, 200)
+            .to({scaleX: 0, scaleY: 0}, 350)
             .call(UIUtils.removeSelf, this, [this.leaf]);
         egret.Tween.get(this.background)
-            .to({alpha: 0}, 300)
+            .to({alpha: 0}, 450)
             .call(UIUtils.removeSelf, this, [this.background])
             .call(()=> {
                 UIUtils.removeSelf(this);

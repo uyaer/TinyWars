@@ -23,7 +23,8 @@ var UserVo = (function () {
         this.cup = 0;
         /****神石****/
         this.gem = 0;
-        this.map = new HashMap();
+        /****** 建筑 *******/
+        this.building = new HashMap();
     }
     var d = __define,c=UserVo;p=c.prototype;
     return UserVo;

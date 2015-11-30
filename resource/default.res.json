@@ -1,12 +1,16 @@
 {
 	"groups":[
 	{
-		"keys":"checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,common_json",
+		"keys":"common_json,gamescene_json,pic_background_jpg",
 		"name":"common"
 	},
 	{
 		"keys":"preload_json",
 		"name":"preload"
+	},
+	{
+		"keys":"login_bg_jpg,login_btn_png",
+		"name":"login"
 	}],
 	"resources":[
 	{
@@ -126,7 +130,7 @@
 	},
 	{
 		"name":"common_json",
-		"subkeys":"loading_panel_png,loading_scene_logo_png",
+		"subkeys":"btn_building_gray_png,btn_building_png,btn_yellow_png,loading_panel_png,loading_scene_logo_png,mater_crystal_png,mater_cup_png,mater_food_png,mater_fur_png,mater_gem_png,mater_gold_png,mater_horse_png,mater_metal_png,mater_stone_png,mater_wood_png,menu_bg_png,menu_build_png,menu_dinfo_png,menu_ef_png,menu_food_png,menu_setting_png,menu_shop_png,menu_technology_png,menu_war_png,tab1_png,tab1_select_png,tab2_png,tab2_select_png,top_input_png",
 		"type":"sheet",
 		"url":"assets/common/ui/common.json"
 	},
@@ -135,5 +139,26 @@
 		"subkeys":"leaf_10c_png,logo_15c_png,pgreenbg_png,scir_png",
 		"type":"sheet",
 		"url":"assets/preload/ui/preload.json"
+	},
+	{
+		"name":"login_bg_jpg",
+		"type":"image",
+		"url":"assets/login/login_bg.jpg"
+	},
+	{
+		"name":"login_btn_png",
+		"type":"image",
+		"url":"assets/login/login_btn.png"
+	},
+	{
+		"name":"gamescene_json",
+		"subkeys":"scene1_png,scene2_png,scene3_png,scene4_png,scene5_png,scene6_png",
+		"type":"sheet",
+		"url":"assets/common/scene/gamescene.json"
+	},
+	{
+		"name":"pic_background_jpg",
+		"type":"image",
+		"url":"assets/common/ui/pic_background.jpg"
 	}]
 }

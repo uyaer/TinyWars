@@ -31,6 +31,7 @@ var PreLoading = (function (_super) {
     p.createChildren = function () {
         _super.prototype.createChildren.call(this);
         this.sCir2.visible = this.pBg.visible = this.pFront.visible = this.logo.visible = this.leaf.visible = false;
+        this.pTF.text = "";
         this.start();
     };
     p.load = function (resGroup, cls) {
@@ -110,6 +111,7 @@ var PreLoading = (function (_super) {
         if (e.groupName == this.resGroup) {
             var p = e.itemsLoaded / e.itemsTotal;
             var w = p * 400;
+            this.pTF.text = Math.floor(p * 100) + "%";
             egret.Tween.removeTweens(this.pFront);
             egret.Tween.get(this.pFront)
                 .to({ width: w }, 250, egret.Ease.sineOut);
@@ -122,6 +124,7 @@ var PreLoading = (function (_super) {
             .to({ width: 400 }, 250, egret.Ease.sineOut)
             .call(function () {
             UIUtils.removeSelf(_this.pBg);
+            _this.pLabelMoveRight();
             _this.lineMoveRight();
             _this.logoRotation();
             _this.leafMove();
@@ -131,6 +134,11 @@ var PreLoading = (function (_super) {
         this.pFront.horizontalCenter = NaN;
         egret.Tween.get(this.pFront)
             .to({ x: 1200 }, 50);
+    };
+    p.pLabelMoveRight = function () {
+        this.pTF.horizontalCenter = NaN;
+        egret.Tween.get(this.pTF)
+            .to({ x: 700, alpha: 0 }, 50);
     };
     p.logoRotation = function () {
         egret.Tween.get(this.logo)
@@ -148,13 +156,13 @@ var PreLoading = (function (_super) {
     p.removeAllElements = function () {
         var _this = this;
         egret.Tween.get(this.leaf)
-            .to({ rotation: 80 }, 200)
+            .to({ rotation: 80 }, 350)
             .call(UIUtils.removeSelf, this, [this.leaf]);
         egret.Tween.get(this.logo)
-            .to({ scaleX: 0, scaleY: 0 }, 200)
+            .to({ scaleX: 0, scaleY: 0 }, 350)
             .call(UIUtils.removeSelf, this, [this.leaf]);
         egret.Tween.get(this.background)
-            .to({ alpha: 0 }, 300)
+            .to({ alpha: 0 }, 450)
             .call(UIUtils.removeSelf, this, [this.background])
             .call(function () {
             UIUtils.removeSelf(_this);

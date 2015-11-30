@@ -137,22 +137,8 @@ var Main = (function (_super) {
         GameLayerManager.instance.init(this);
         var bmob = window["Bmob"];
         bmob.initialize("c76ab2e8a1426a7d7c4a21afb36e7746", "3edba771baa213f496120e323510e4b1");
-        var button = new eui.Button();
-        button.label = "Click!";
-        button.horizontalCenter = 0;
-        button.verticalCenter = 0;
-        GameLayerManager.instance.gameLayer.addChild(button);
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
-    };
-    p.onButtonClick = function (e) {
-        //SceneLoading.instance.load("common", null);
-        UserNet.instance.login("123", function (user) {
-            var dataStr = user.get("dataStr") || "{}";
-            Player.instance.dealLoginSuccess(JSON.parse(dataStr));
-            Player.instance.saveToNet();
-            ///数据同步计时器启动
-            DateTimer.instance.runSyncTicker();
-        });
+        //转换场景
+        PreLoading.instance.load("login", LoginScene);
     };
     return Main;
 })(eui.UILayer);

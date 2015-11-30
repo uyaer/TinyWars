@@ -26,6 +26,14 @@ var HashMap = (function () {
         }
         return arr;
     };
+    /**
+     * 将toJSON后的str数据转化回来
+     * @param str
+     */
+    p.parse = function (str) {
+        var obj = JSON.parse(str);
+        this.data = obj.data;
+    };
     p.toString = function () {
         return JSON.stringify(this.data);
     };

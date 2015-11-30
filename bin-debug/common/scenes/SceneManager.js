@@ -15,13 +15,20 @@ var SceneManager = (function () {
     );
     p.runScene = function (cls, color) {
         var scene = new cls();
+        this.currScene = scene;
         GameLayerManager.instance.gameLayer.addChild(scene);
         if (color != null) {
             var transition = new eui.Rect(Const.WIN_W, Const.WIN_H, 0x1EF7E8);
-            GameLayerManager.instance.uiLayer.addChild(transition);
+            GameLayerManager.instance.gameLayer.addChild(transition);
             egret.Tween.get(transition)
                 .to({ alpha: 0 }, 350)
                 .call(UIUtils.removeSelf, this, [transition]);
+        }
+    };
+    p.removeScene = function () {
+        if (this.currScene) {
+            UIUtils.removeSelf(this.currScene);
+            this.currScene = null;
         }
     };
     return SceneManager;

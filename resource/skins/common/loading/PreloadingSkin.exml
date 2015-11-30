@@ -8,6 +8,7 @@
 	</e:Group>
 	<e:Rect id="pBg" width="400" height="2" y="446" fillColor="0xFFFFFF" horizontalCenter="0"/>
 	<e:Rect id="pFront" y="446" width="400" height="2" fillColor="0x49DC0F" horizontalCenter="0"/>
+	<e:Label id="pTF" text="0%" y="455" horizontalCenter="0"/>
 	<e:Group id="logo" width="53" height="53" x="320" y="445">
 		<e:Image source="logo_15c_png" x="-75" y="-113" locked="true"/>
 	</e:Group>
