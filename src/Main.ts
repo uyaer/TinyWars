@@ -39,11 +39,16 @@ class Main extends eui.UILayer {
 
         //发布版屏蔽本地和非uyaer访问
         if (RELEASE) {
-            var url = location.href;
-            if (url.indexOf("2.168.") != -1
-                || url.indexOf("ocalho") > -1
-                || url.indexOf("yaer") == -1) {
-                return;
+            if (egret.Capabilities.runtimeType == egret.RuntimeType.WEB) {
+                var url = location.href;
+                if (url.indexOf("2.168.") != -1
+                    || url.indexOf("ocalho") > -1
+                    || url.indexOf("yaer") == -1) {
+                    console.log("发布版不支持本地预览，请发布后删除这句话");
+                    return;
+                }
+            } else { //Native check package name
+                //TODO native package name
             }
         }
 
@@ -145,6 +150,8 @@ class Main extends eui.UILayer {
         Const.WIN_H = this.stage.stageHeight;
         GameLayerManager.instance.init(this);
 
+        var bmob = window["Bmob"];
+        bmob.initialize("c76ab2e8a1426a7d7c4a21afb36e7746", "3edba771baa213f496120e323510e4b1");
 
         var button = new eui.Button();
         button.label = "Click!";
@@ -155,7 +162,14 @@ class Main extends eui.UILayer {
     }
 
     private onButtonClick(e:egret.TouchEvent) {
-        SceneLoading.instance.load("common", null);
-        console.log("....")
+        //SceneLoading.instance.load("common", null);
+        UserNet.instance.login("123", (user)=> {
+            var dataStr = user.get("dataStr") || "{}";
+            Player.instance.dealLoginSuccess(JSON.parse(dataStr));
+            Player.instance.saveToNet();
+
+            ///数据同步计时器启动
+            DateTimer.instance.runSyncTicker();
+        })
     }
 }

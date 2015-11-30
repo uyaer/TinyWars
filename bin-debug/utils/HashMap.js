@@ -6,11 +6,18 @@ var HashMap = (function () {
     p.set = function (K, V) {
         this.data[K] = V;
     };
+    p.put = function (K, V) {
+        this.set(K, V);
+    };
     p.get = function (K) {
         return this.data[K];
     };
     p.has = function (K) {
         return this.data.hasOwnProperty(K);
+    };
+    p.remove = function (K) {
+        this.data[K] = undefined;
+        delete this.data[K];
     };
     p.keys = function () {
         var arr = [];
@@ -18,6 +25,9 @@ var HashMap = (function () {
             arr.push(key);
         }
         return arr;
+    };
+    p.toString = function () {
+        return JSON.stringify(this.data);
     };
     return HashMap;
 })();

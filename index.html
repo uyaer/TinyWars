@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Egret</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="full-screen" content="true"/>
     <meta name="screen-orientation" content="portrait"/>
@@ -33,6 +34,7 @@
 
     <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
     <!--other_libs_files_start-->
+    <script egret="lib" src="libs/bmob-min.js" src-release="libs/bmob-min.js"></script>
     <!--other_libs_files_end-->
 
     <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
@@ -41,6 +43,15 @@
 	<script egret="game" src="bin-debug/common/Const.js"></script>
 	<script egret="game" src="bin-debug/common/events/EventManager.js"></script>
 	<script egret="game" src="bin-debug/common/events/EventName.js"></script>
+	<script egret="game" src="bin-debug/common/i18n/Lang.js"></script>
+	<script egret="game" src="bin-debug/common/net/http/HttpClient.js"></script>
+	<script egret="game" src="bin-debug/common/net/IClient.js"></script>
+	<script egret="game" src="bin-debug/common/net/module/UserNet.js"></script>
+	<script egret="game" src="bin-debug/common/net/Net.js"></script>
+	<script egret="game" src="bin-debug/common/net/websocket/WebSocketClient.js"></script>
+	<script egret="game" src="bin-debug/common/player/BuildingType.js"></script>
+	<script egret="game" src="bin-debug/common/player/Player.js"></script>
+	<script egret="game" src="bin-debug/common/player/UserVo.js"></script>
 	<script egret="game" src="bin-debug/common/scenes/SceneManager.js"></script>
 	<script egret="game" src="bin-debug/common/ui/GameLayerManager.js"></script>
 	<script egret="game" src="bin-debug/common/ui/loading/NetLoading.js"></script>
@@ -50,6 +61,7 @@
 	<script egret="game" src="bin-debug/common/ui/PanelBase.js"></script>
 	<script egret="game" src="bin-debug/common/ui/PanelName.js"></script>
 	<script egret="game" src="bin-debug/common/ui/UIManager.js"></script>
+	<script egret="game" src="bin-debug/common/utils/DateTimer.js"></script>
 	<script egret="game" src="bin-debug/LoadingUI.js"></script>
 	<script egret="game" src="bin-debug/Main.js"></script>
 	<script egret="game" src="bin-debug/ThemeAdapter.js"></script>
@@ -61,20 +73,20 @@
 </head>
 <body>
 
-    <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
-         data-entry-class="Main"
-         data-orientation="portrait"
-         data-scale-mode="showAll"
-         data-frame-rate="30"
-         data-content-width="640"
-         data-content-height="960"
-         data-show-paint-rect="false"
-         data-multi-fingered="2"
-         data-show-fps="false" data-show-log="false"
-         data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
-    </div>
-    <script>
-        egret.runEgret();
-    </script>
+<div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+     data-entry-class="Main"
+     data-orientation="portrait"
+     data-scale-mode="showAll"
+     data-frame-rate="30"
+     data-content-width="640"
+     data-content-height="960"
+     data-show-paint-rect="false"
+     data-multi-fingered="2"
+     data-show-fps="false" data-show-log="false"
+     data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
+</div>
+<script>
+    egret.runEgret();
+</script>
 </body>
 </html>

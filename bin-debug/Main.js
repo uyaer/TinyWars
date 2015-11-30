@@ -36,6 +36,20 @@ var Main = (function (_super) {
     var d = __define,c=Main;p=c.prototype;
     p.createChildren = function () {
         _super.prototype.createChildren.call(this);
+        //发布版屏蔽本地和非uyaer访问
+        if (RELEASE) {
+            if (egret.Capabilities.runtimeType == egret.RuntimeType.WEB) {
+                var url = location.href;
+                if (url.indexOf("2.168.") != -1
+                    || url.indexOf("ocalho") > -1
+                    || url.indexOf("yaer") == -1) {
+                    console.log("发布版不支持本地预览，请发布后删除这句话");
+                    return;
+                }
+            }
+            else {
+            }
+        }
         //inject the custom material parser
         //注入自定义的素材解析器
         var assetAdapter = new AssetAdapter();
@@ -121,6 +135,8 @@ var Main = (function (_super) {
         Const.WIN_W = this.stage.stageWidth;
         Const.WIN_H = this.stage.stageHeight;
         GameLayerManager.instance.init(this);
+        var bmob = window["Bmob"];
+        bmob.initialize("c76ab2e8a1426a7d7c4a21afb36e7746", "3edba771baa213f496120e323510e4b1");
         var button = new eui.Button();
         button.label = "Click!";
         button.horizontalCenter = 0;
@@ -129,8 +145,14 @@ var Main = (function (_super) {
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     };
     p.onButtonClick = function (e) {
-        SceneLoading.instance.load("common", null);
-        console.log("....");
+        //SceneLoading.instance.load("common", null);
+        UserNet.instance.login("123", function (user) {
+            var dataStr = user.get("dataStr") || "{}";
+            Player.instance.dealLoginSuccess(JSON.parse(dataStr));
+            Player.instance.saveToNet();
+            ///数据同步计时器启动
+            DateTimer.instance.runSyncTicker();
+        });
     };
     return Main;
 })(eui.UILayer);

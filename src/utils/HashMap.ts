@@ -5,6 +5,10 @@ class HashMap<K,V> {
         this.data[K] = V;
     }
 
+    public put(K, V):void {
+        this.set(K, V);
+    }
+
     public get(K):V {
         return this.data[K];
     }
@@ -13,11 +17,29 @@ class HashMap<K,V> {
         return this.data.hasOwnProperty(K);
     }
 
-    public keys():K[]{
+    public remove(K):void {
+        this.data[K] = undefined;
+        delete this.data[K];
+    }
+
+    public keys():K[] {
         var arr:K[] = [];
-        for(var key in this.data){
+        for (var key in this.data) {
             arr.push(key);
         }
         return arr;
+    }
+
+    /**
+     * 将toJSON后的str数据转化回来
+     * @param str
+     */
+    public parse(str:string) {
+        var obj = JSON.parse(str);
+        this.data = obj.data;
+    }
+
+    public toString() {
+        return JSON.stringify(this.data);
     }
 }
