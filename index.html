@@ -34,7 +34,8 @@
 
     <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
     <!--other_libs_files_start-->
-    <script egret="lib" src="libs/bmob-min.js" src-release="libs/bmob-min.js"></script>
+    <script egret="lib" src="libs/plugins/bmob-min.js" src-release="libs/plugins/bmob-min.js"></script>
+    <script egret="lib" src="libs/user/user_util.js" src-release="libs/user/user_util.js"></script>
     <!--other_libs_files_end-->
 
     <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
@@ -51,6 +52,7 @@
 	<script egret="game" src="bin-debug/common/net/websocket/WebSocketClient.js"></script>
 	<script egret="game" src="bin-debug/common/player/enum/BuildingType.js"></script>
 	<script egret="game" src="bin-debug/common/player/enum/ConstName.js"></script>
+	<script egret="game" src="bin-debug/common/player/enum/ResType.js"></script>
 	<script egret="game" src="bin-debug/common/player/Player.js"></script>
 	<script egret="game" src="bin-debug/common/player/UserVo.js"></script>
 	<script egret="game" src="bin-debug/common/scenes/SceneBase.js"></script>
@@ -70,6 +72,12 @@
 	<script egret="game" src="bin-debug/common/utils/preload/ResQueueNode.js"></script>
 	<script egret="game" src="bin-debug/game/scenes/login/LoginScene.js"></script>
 	<script egret="game" src="bin-debug/game/scenes/main/common/button/MenuTabButton.js"></script>
+	<script egret="game" src="bin-debug/game/scenes/main/common/item/ResItemBase.js"></script>
+	<script egret="game" src="bin-debug/game/scenes/main/common/item/FirstResItem.js"></script>
+	<script egret="game" src="bin-debug/game/scenes/main/common/item/SecondResItem.js"></script>
+	<script egret="game" src="bin-debug/game/scenes/main/common/item/ThirdResItem.js"></script>
+	<script egret="game" src="bin-debug/game/scenes/main/common/scene/Landscape.js"></script>
+	<script egret="game" src="bin-debug/game/scenes/main/common/scene/LandscapePart.js"></script>
 	<script egret="game" src="bin-debug/game/scenes/main/MainScene.js"></script>
 	<script egret="game" src="bin-debug/LoadingUI.js"></script>
 	<script egret="game" src="bin-debug/Main.js"></script>

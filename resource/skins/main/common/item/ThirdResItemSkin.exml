@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <e:Skin class="ThirdResItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image source="top_input_png" width="206" x="0" height="35" y="0" scale9Grid="17,10,16,15"/>
-	<e:Image x="4" verticalCenter="0" source="mater_gem_png"/>
+	<e:Image id="icon" x="4" source="res_icon_10_png" verticalCenter="0" />
 	<e:Label text="食物" x="46" size="20" verticalCenter="0"/>
 	<e:Label size="20" text="1020000" right="9" verticalCenter="0"/>
 </e:Skin>

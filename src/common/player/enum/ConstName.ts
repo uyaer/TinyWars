@@ -30,6 +30,7 @@ class BuildingName {
     public static getFactoryBuildingName(type:number) {
         return BuildingName._factoryBuildingName[type - 300];
     }
+
     /**
      * 获取军事建筑名称
      * @param type
@@ -37,5 +38,16 @@ class BuildingName {
      */
     public static getWarBuildingName(type:number) {
         return BuildingName._warBuildingName[type - 400];
+    }
+}
+
+/**
+ * 资源名称
+ */
+class ResName {
+    private static _name = ["", "食物", "木头", "石头", "金属", "皮革", "马匹", "龙晶", "奖杯", "金币", "神石"];
+
+    public static getName(type:number) {
+        return ResName._name[type];
     }
 }

@@ -23,16 +23,7 @@ var Player = (function () {
     );
     p.dealLoginSuccess = function (data) {
         this._vo = new UserVo();
-        this._vo.food = data["food"];
-        this._vo.wood = data["wood"];
-        this._vo.stone = data["stone"];
-        this._vo.crystal = data["crystal"];
-        this._vo.fur = data["fur"];
-        this._vo.horse = data["horse"];
-        this._vo.metal = data["metal"];
-        this._vo.cup = data["cup"];
-        this._vo.gold = data["gold"];
-        this._vo.gem = data["gem"];
+        this._vo.resource.parse(data["resource"]);
         this._vo.building.parse(data["building"]);
     };
     /**
@@ -40,6 +31,14 @@ var Player = (function () {
      */
     p.saveToNet = function () {
         UserNet.instance.save(JSON.stringify(this._vo));
+    };
+    /**
+     * 获取资源数量
+     * @param type
+     * @returns {number}
+     */
+    p.getResourceCount = function (type) {
+        return this._vo.resource.get(type) || 0;
     };
     return Player;
 })();

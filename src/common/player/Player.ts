@@ -18,22 +18,13 @@ class Player {
     }
 
     private _vo:UserVo;
-    private get vo() {
+    public get vo() {
         return this._vo;
     }
 
     public dealLoginSuccess(data) {
         this._vo = new UserVo();
-        this._vo.food = data["food"];
-        this._vo.wood = data["wood"];
-        this._vo.stone = data["stone"];
-        this._vo.crystal = data["crystal"];
-        this._vo.fur = data["fur"];
-        this._vo.horse = data["horse"];
-        this._vo.metal = data["metal"];
-        this._vo.cup = data["cup"];
-        this._vo.gold = data["gold"];
-        this._vo.gem = data["gem"];
+        this._vo.resource.parse(data["resource"]);
         this._vo.building.parse(data["building"]);
     }
 
@@ -42,5 +33,14 @@ class Player {
      */
     public saveToNet() {
         UserNet.instance.save(JSON.stringify(this._vo));
+    }
+
+    /**
+     * 获取资源数量
+     * @param type
+     * @returns {number}
+     */
+    public getResourceCount(type:number):number {
+        return this._vo.resource.get(type) || 0;
     }
 }

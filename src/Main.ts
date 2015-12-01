@@ -40,11 +40,12 @@ class Main extends eui.UILayer {
         //发布版屏蔽本地和非uyaer访问
         if (RELEASE) {
             if (egret.Capabilities.runtimeType == egret.RuntimeType.WEB) {
+                if (!egret.Capabilities.isMobile)return;
                 var url = location.href;
                 if (url.indexOf("2.168.") != -1
                     || url.indexOf("ocalho") > -1
                     || url.indexOf("yaer") == -1) {
-                    console.log("发布版不支持本地预览，请发布后删除这句话");
+                    alert("发布版不支持本地预览，请发布后删除这句话");
                     return;
                 }
             } else { //Native check package name
