@@ -73,6 +73,7 @@ class PanelLoading extends eui.Panel {
     }
 
     public hide() {
+        this.count--;
         if (this.count <= 0) {
             this.stop();
         }

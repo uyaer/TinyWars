@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="SecondResItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="top_input_png" scale9Grid="17,15,14,3" width="206" x="0" height="47" y="0" locked="true"/>
+<e:Skin class="FirstResItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="top_input_png" scale9Grid="17,15,14,3" width="200" x="0" height="47" y="0"/>
 	<e:Image id="icon" source="res_icon_1_png" x="4" y="3"/>
-	<e:Label text="食物" x="46" y="5" size="20"/>
-	<e:Label size="20" y="4" text="＋12536/s" right="8" textColor="0x4CD00A"/>
-	<e:Label size="20" y="23" text="1020000" right="8"/>
+	<e:Label id="nameTF" text="食物" x="46" y="5" size="20"/>
+	<e:Label id="addNumTF" size="20" y="4" text="＋12536/s" right="8" textColor="0x4CD00A"/>
+	<e:Label id="numTF" size="20" y="24" text="1020000" right="8"/>
 </e:Skin>

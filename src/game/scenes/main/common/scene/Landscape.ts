@@ -5,9 +5,9 @@ class Landscape extends egret.Sprite {
         super();
 
         this.partArr = [];
-        var speedArr = [20000, 17000, 14000, 10000, 8000, 5000];
+        var speedArr = [20000, 17000, 14000, 10000, 8000, 0];
         for (var i = 6; i > 0; i--) {
-            var part:LandscapePart = new LandscapePart(i, speedArr[i]);
+            var part:LandscapePart = new LandscapePart(i, speedArr[6-i]);
             this.addChild(part);
             this.partArr.push(part);
         }

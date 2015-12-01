@@ -12,6 +12,7 @@
 		<e:Button id="btnSetting" label="按钮" skinName="MenuButtonSkin" horizontalCenter="270" verticalCenter="6"/>
 	</e:Group>
 	<e:Group id="topGroup" width="640" height="200">
+		<e:Rect left="0" right="0" top="0" bottom="0" fillColor="0x172431"/>
 		
 	</e:Group>
 </e:Skin>

@@ -198,6 +198,27 @@
 				"isFolder":false,
 				"key":"pic_background_jpg",
 				"name":"pic_background_jpg"
+			},
+			{
+				"children":[
+				{
+					"isFolder":false,
+					"key":"bigapple_png",
+					"name":"bigapple_png"
+				},
+				{
+					"isFolder":false,
+					"key":"bigstone_png",
+					"name":"bigstone_png"
+				},
+				{
+					"isFolder":false,
+					"key":"bigwood_png",
+					"name":"bigwood_png"
+				}],
+				"isFolder":false,
+				"key":"click_res_json",
+				"name":"click_res_json"
 			}]
 		}
 	},

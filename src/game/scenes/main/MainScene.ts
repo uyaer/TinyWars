@@ -19,6 +19,7 @@ class MainScene extends SceneBase {
     private menuTab:SimpleTab;
     private resItemArr:ResItemBase[];
     private landscape:Landscape;
+    private viewPanel:SlidePanelBase;
 
 
     protected createChildren() {
@@ -40,7 +41,7 @@ class MainScene extends SceneBase {
             new MenuTabButton(this.btnSetting, "menu_setting_png")
         ];
         this.menuTab = new SimpleTab(arr);
-
+        this.menuTab.itemChangeCallback = this.onMenuTabItemChange.bind(this);
         this.menuTab.selectIndex = 0;
     }
 
@@ -48,22 +49,22 @@ class MainScene extends SceneBase {
         this.resItemArr = [];
         for (var i = 1; i <= 3; i++) {
             var item:ResItemBase = new FirstResItem(i);
-            item.x = 10 + i * 267;
-            item.x = 10;
+            item.x = 10 + (i - 1) * 210;
+            item.y = 5;
             this.topGroup.addChild(item);
             this.resItemArr.push(item);
         }
         for (var i = 4; i <= 7; i++) {
-            var item:ResItemBase = new FirstResItem(i);
-            item.x = 10 + (i % 2) * 305;
-            item.x = 70 + int(i / 2);
+            var item:ResItemBase = new SecondResItem(i);
+            item.x = 10 + ((i - 4) % 2) * 315;
+            item.y = 56 + int((i - 4) / 2) * 39;
             this.topGroup.addChild(item);
             this.resItemArr.push(item);
         }
         for (var i = 8; i <= 10; i++) {
-            var item:ResItemBase = new FirstResItem(i);
-            item.x = 10 + i * 267;
-            item.x = 110;
+            var item:ResItemBase = new ThirdResItem(i);
+            item.x = 10 + (i - 8) * 210;
+            item.y = 134;
             this.topGroup.addChild(item);
             this.resItemArr.push(item);
         }
@@ -74,9 +75,20 @@ class MainScene extends SceneBase {
      */
     private initLandscape() {
         this.landscape = new Landscape();
-        this.landscape.y = 150;
+        this.landscape.y = 174;
         this.addChild(this.landscape);
     }
+
+    private onMenuTabItemChange(index:number) {
+        var arr = [ClickResPanel];
+        if(this.viewPanel){
+            this.viewPanel.hide();
+        }
+        this.viewPanel = new arr[index]();
+        this.viewPanel.y = 300;
+        this.viewPanel.viewParent = this;
+    }
+
 
     protected destroy() {
         this.menuTab.destroy();

@@ -33,6 +33,7 @@ var PanelBase = (function (_super) {
      * 销毁
      */
     p.destroy = function () {
+        RES.destroyRes(this._resGroup);
     };
     p.init = function (resGroup) {
         this._resGroup = resGroup;
@@ -66,6 +67,7 @@ var PanelBase = (function (_super) {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
             this.skinName = null;
             this.skinName = this.uiSkinName;
+            this.viewParent.addChild(this);
         }
     };
     p.createChildren = function () {
@@ -109,6 +111,9 @@ var PanelBase = (function (_super) {
             scaleX: 0,
             scaleY: 0
         }, 250, egret.Ease.backIn).call(UIUtils.removeSelf, this, [this]);
+    };
+    p.hide = function () {
+        this.onHide();
     };
     return PanelBase;
 })(eui.Panel);

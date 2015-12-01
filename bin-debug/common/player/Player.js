@@ -3,6 +3,7 @@
  */
 var Player = (function () {
     function Player() {
+        this._vo = new UserVo();
         if (Player._instance) {
             throw new Error("Player使用单例");
         }
@@ -22,7 +23,6 @@ var Player = (function () {
         }
     );
     p.dealLoginSuccess = function (data) {
-        this._vo = new UserVo();
         this._vo.resource.parse(data["resource"]);
         this._vo.building.parse(data["building"]);
     };

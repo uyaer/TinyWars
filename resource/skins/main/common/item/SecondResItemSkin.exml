@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="FirstResItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image source="top_input_png" width="424" x="0" height="35" y="0" scale9Grid="17,10,16,15"/>
+<e:Skin class="SecondResItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="top_input_png" width="305" x="0" height="35" y="0" scale9Grid="17,10,16,15"/>
 	<e:Image id="icon" x="4" source="res_icon_5_png" verticalCenter="0"/>
-	<e:Label text="食物" x="46" size="20" verticalCenter="0"/>
-	<e:Label size="20" text="1020000" right="9" verticalCenter="0"/>
+	<e:Label id="nameTF" text="食物" x="46" size="20" y="8"/>
+	<e:Label id="numTF" size="20" text="1020000" right="9" y="8"/>
 </e:Skin>

@@ -1,5 +1,9 @@
 class PanelBase extends eui.Panel {
     protected uiSkinName:any;
+    /**
+     * 设置父对象
+     */
+    public viewParent:any;
 
     public constructor() {
         super();
@@ -32,7 +36,7 @@ class PanelBase extends eui.Panel {
      * 销毁
      */
     protected destroy() {
-
+        RES.destroyRes(this._resGroup);
     }
 
 
@@ -82,6 +86,7 @@ class PanelBase extends eui.Panel {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
             this.skinName = null;
             this.skinName = this.uiSkinName;
+            this.viewParent.addChild(this);
         }
     }
 
@@ -131,5 +136,9 @@ class PanelBase extends eui.Panel {
             scaleX: 0,
             scaleY: 0
         }, 250, egret.Ease.backIn).call(UIUtils.removeSelf, this, [this]);
+    }
+
+    public hide(){
+        this.onHide();
     }
 }

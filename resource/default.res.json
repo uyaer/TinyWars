@@ -11,6 +11,10 @@
 	{
 		"keys":"login_bg_jpg,login_btn_png",
 		"name":"login"
+	},
+	{
+		"keys":"click_res_json",
+		"name":"clickres"
 	}],
 	"resources":[
 	{
@@ -130,7 +134,7 @@
 	},
 	{
 		"name":"common_json",
-		"subkeys":"btn_building_gray_png,btn_building_png,btn_yellow_png,loading_panel_png,loading_scene_logo_png,menu_bg_png,menu_build_png,menu_dinfo_png,menu_ef_png,menu_food_png,menu_setting_png,menu_shop_png,menu_technology_png,menu_union_png,menu_war_png,res_icon_0_png,res_icon_1_png,res_icon_2_png,res_icon_3_png,res_icon_4_png,res_icon_5_png,res_icon_6_png,res_icon_7_png,res_icon_8_png,res_icon_9_png,tab1_png,tab1_select_png,tab2_png,tab2_select_png,top_input_png",
+		"subkeys":"btn_building_gray_png,btn_building_png,btn_yellow_png,loading_panel_png,loading_scene_logo_png,menu_bg_png,menu_build_png,menu_dinfo_png,menu_ef_png,menu_food_png,menu_setting_png,menu_shop_png,menu_technology_png,menu_union_png,menu_war_png,res_icon_10_png,res_icon_1_png,res_icon_2_png,res_icon_3_png,res_icon_4_png,res_icon_5_png,res_icon_6_png,res_icon_7_png,res_icon_8_png,res_icon_9_png,tab1_png,tab1_select_png,tab2_png,tab2_select_png,top_input_png",
 		"type":"sheet",
 		"url":"assets/common/ui/common.json"
 	},
@@ -160,5 +164,11 @@
 		"name":"pic_background_jpg",
 		"type":"image",
 		"url":"assets/common/ui/pic_background.jpg"
+	},
+	{
+		"name":"click_res_json",
+		"subkeys":"bigapple_png,bigstone_png,bigwood_png",
+		"type":"sheet",
+		"url":"assets/main/click_res/ui/click_res.json"
 	}]
 }

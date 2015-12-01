@@ -17,13 +17,12 @@ class Player {
         return Player._instance;
     }
 
-    private _vo:UserVo;
+    private _vo:UserVo = new UserVo();
     public get vo() {
         return this._vo;
     }
 
     public dealLoginSuccess(data) {
-        this._vo = new UserVo();
         this._vo.resource.parse(data["resource"]);
         this._vo.building.parse(data["building"]);
     }

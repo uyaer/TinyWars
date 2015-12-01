@@ -12,5 +12,5 @@ function isArray(val) {
 }
 
 function int(val) {
-    parseInt(val);
+    return parseInt(val);
 }

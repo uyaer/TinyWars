@@ -58,6 +58,7 @@ var PanelLoading = (function (_super) {
         }
     };
     p.hide = function () {
+        this.count--;
         if (this.count <= 0) {
             this.stop();
         }

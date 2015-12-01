@@ -31,9 +31,10 @@
     "resource/skins/common/loading/SceneLoadingSkin.exml",
     "resource/skins/login/LoginSceneSkin.exml",
     "resource/skins/main/common/button/MenuButtonSkin.exml",
+    "resource/skins/main/MainSceneSkin.exml",
     "resource/skins/main/common/item/FirstResItemSkin.exml",
     "resource/skins/main/common/item/SecondResItemSkin.exml",
     "resource/skins/main/common/item/ThirdResItemSkin.exml",
-    "resource/skins/main/MainSceneSkin.exml"
+    "resource/skins/main/panel/res/ClickResPanelSkin.exml"
   ]
 }

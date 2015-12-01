@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="ClickResPanelSkin" width="640" height="545" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Button id="btnFood" label="按钮" horizontalCenter="4" verticalCenter="-114.5">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="bigapple_png"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btnStone" label="按钮" verticalCenter="132.5" horizontalCenter="-131">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="bigstone_png"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btnWood" label="按钮" horizontalCenter="167" verticalCenter="132.5">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="bigwood_png"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>
