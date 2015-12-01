@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MenuButtonSkin"
+        states="up,down,disabled"
+        xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image x="2" y="3" source="menu_bg_png"/>
+	<e:Image id="iconDisplay" source="menu_build_png" horizontalCenter="0" verticalCenter="0"/>
+	<e:Image id="lightSp" x="0" y="0" source="menu_ef_png" visible="false"  visible.disabled="true"/>
+	</e:Skin>

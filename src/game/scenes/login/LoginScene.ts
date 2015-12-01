@@ -12,7 +12,7 @@ class LoginScene extends SceneBase {
         var btn:eui.Button = e.target;
         if (btn == this.loginBtn) {
 
-            SceneLoading.instance.load("main",MainScene);
+            SceneLoading.instance.load("main", MainScene);
 
             //TODO login
             //UserNet.instance.login("123", (user)=> {
