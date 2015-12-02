@@ -20,6 +20,10 @@ class MainScene extends SceneBase {
     private resItemArr:ResItemBase[];
     private landscape:Landscape;
     private viewPanel:SlidePanelBase;
+    /**
+     * * 每一秒的时间计时器
+     */
+    private timer:egret.Timer;
 
 
     protected createChildren() {
@@ -28,6 +32,7 @@ class MainScene extends SceneBase {
         this.initMenuTab();
         this.initResItem();
         this.initLandscape();
+        this.initUpdateTimer();
     }
 
     private initMenuTab() {
@@ -47,23 +52,26 @@ class MainScene extends SceneBase {
 
     private initResItem() {
         this.resItemArr = [];
-        for (var i = 1; i <= 3; i++) {
-            var item:ResItemBase = new FirstResItem(i);
-            item.x = 10 + (i - 1) * 210;
+        var arr = [ResType.FOOD, ResType.WOOD, ResType.STONE];
+        for (var i = 0; i < arr.length; i++) {
+            var item:ResItemBase = new FirstResItem(arr[i]);
+            item.x = 10 + i * 210;
             item.y = 5;
             this.topGroup.addChild(item);
             this.resItemArr.push(item);
         }
-        for (var i = 4; i <= 7; i++) {
-            var item:ResItemBase = new SecondResItem(i);
-            item.x = 10 + ((i - 4) % 2) * 315;
-            item.y = 56 + int((i - 4) / 2) * 39;
+        var arr = [ResType.METAL, ResType.FUR, ResType.HORSE, ResType.CRYSTAL];
+        for (var i = 0; i < arr.length; i++) {
+            var item:ResItemBase = new SecondResItem(arr[i]);
+            item.x = 10 + (i % 2) * 315;
+            item.y = 56 + int(i / 2) * 39;
             this.topGroup.addChild(item);
             this.resItemArr.push(item);
         }
-        for (var i = 8; i <= 10; i++) {
-            var item:ResItemBase = new ThirdResItem(i);
-            item.x = 10 + (i - 8) * 210;
+        var arr = [ResType.CUP, ResType.GOLD, ResType.GEM];
+        for (var i = 0; i < arr.length; i++) {
+            var item:ResItemBase = new ThirdResItem(arr[i]);
+            item.x = 10 + i * 210;
             item.y = 134;
             this.topGroup.addChild(item);
             this.resItemArr.push(item);
@@ -79,9 +87,30 @@ class MainScene extends SceneBase {
         this.addChild(this.landscape);
     }
 
+    /**
+     * 创建刷新界面的计时器
+     */
+    private initUpdateTimer() {
+        this.timer = new egret.Timer(500);
+        this.timer.addEventListener(egret.TimerEvent.TIMER, this.onUpdateTimer, this);
+        this.timer.start();
+    }
+
+    /**
+     * 每一秒的时间计时器执行
+     */
+    private onUpdateTimer() {
+        var len = this.resItemArr.length;
+        for (var i = 0; i < len; i++) {
+            var item = this.resItemArr[i];
+            item.update();
+        }
+    }
+
+
     private onMenuTabItemChange(index:number) {
         var arr = [ClickResPanel];
-        if(this.viewPanel){
+        if (this.viewPanel) {
             this.viewPanel.hide();
         }
         this.viewPanel = new arr[index]();
@@ -93,5 +122,7 @@ class MainScene extends SceneBase {
     protected destroy() {
         this.menuTab.destroy();
         this.landscape.destroy();
+        this.timer.removeEventListener(egret.TimerEvent.TIMER, this.onUpdateTimer, this);
+        this.timer.stop();
     }
 }

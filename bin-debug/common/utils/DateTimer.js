@@ -41,8 +41,9 @@ var DateTimer = (function () {
      * 启动同步数据的计时器
      */
     p.runSyncTicker = function () {
-        var timer = new egret.Timer(5000);
+        var timer = new egret.Timer(15000);
         timer.addEventListener(egret.TimerEvent.TIMER, this.onSyncTimer, this);
+        timer.start();
     };
     p.onSyncTimer = function () {
         Player.instance.saveToNet();

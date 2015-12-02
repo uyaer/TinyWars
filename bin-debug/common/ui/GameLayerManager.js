@@ -39,6 +39,7 @@ var GameLayerManager = (function () {
         parent.addChild(this._uiLayer);
         parent.addChild(this._popLayer);
         parent.addChild(this._tipLayer);
+        this._tipLayer.touchChildren = this._tipLayer.touchEnabled = false;
     };
     return GameLayerManager;
 })();

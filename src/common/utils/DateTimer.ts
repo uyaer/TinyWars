@@ -43,8 +43,9 @@ class DateTimer {
      * 启动同步数据的计时器
      */
     public runSyncTicker() {
-        var timer:egret.Timer = new egret.Timer(5000);
+        var timer:egret.Timer = new egret.Timer(15000);
         timer.addEventListener(egret.TimerEvent.TIMER, this.onSyncTimer, this);
+        timer.start();
     }
 
     private onSyncTimer() {

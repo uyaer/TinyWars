@@ -27,6 +27,13 @@ var HashMap = (function () {
         return arr;
     };
     /**
+     * 重新设置
+     * @param obj
+     */
+    p.reset = function (obj) {
+        this.data = obj.data || obj;
+    };
+    /**
      * 将toJSON后的str数据转化回来
      * @param str
      */

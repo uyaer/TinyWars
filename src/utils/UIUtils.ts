@@ -17,6 +17,7 @@ class UIUtils {
         var btn = e.target;
         egret.Tween.get(btn).to({scaleX: 0.9, scaleY: 0.9}, 50).to({scaleX: 1, scaleY: 1}, 50);
     }
+
     static removeButtonScaleEffects(p:egret.DisplayObjectContainer) {
         if (!p)return;
 

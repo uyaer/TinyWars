@@ -3,6 +3,6 @@
 	<e:Image source="top_input_png" scale9Grid="17,15,14,3" width="200" x="0" height="47" y="0"/>
 	<e:Image id="icon" source="res_icon_1_png" x="4" y="3"/>
 	<e:Label id="nameTF" text="食物" x="46" y="5" size="20"/>
-	<e:Label id="addNumTF" size="20" y="4" text="＋12536/s" right="8" textColor="0x4CD00A"/>
-	<e:Label id="numTF" size="20" y="24" text="1020000" right="8"/>
+	<e:Label id="addNumTF" size="20" y="4" text="＋12536/s" right="9" textColor="0x4CD00A"/>
+	<e:Label id="numTF" size="20" y="24" text="1020000" right="9"/>
 </e:Skin>

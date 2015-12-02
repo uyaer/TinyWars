@@ -31,6 +31,14 @@ class HashMap<K,V> {
     }
 
     /**
+     * 重新设置
+     * @param obj
+     */
+    public reset(obj){
+        this.data = obj.data || obj;
+    }
+
+    /**
      * 将toJSON后的str数据转化回来
      * @param str
      */
