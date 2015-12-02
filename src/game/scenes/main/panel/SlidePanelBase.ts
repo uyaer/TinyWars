@@ -1,19 +1,19 @@
 class SlidePanelBase extends PanelBase {
-    public constructor() {
-        super();
+    public constructor(viewParent:any) {
+        super(viewParent);
     }
 
     protected onShow() {
         this.x = Const.WIN_W;
         egret.Tween.get(this).to({
             x: 0,
-        }, 350, egret.Ease.backOut);
+        }, 200);
     }
 
     protected onHide() {
         var toX = -Const.WIN_W;
         egret.Tween.get(this).to({
             x: toX,
-        }, 350, egret.Ease.backIn).call(UIUtils.removeSelf, this, [this]);
+        }, 200).call(UIUtils.removeSelf, this, [this]);
     }
 }

@@ -1,6 +1,6 @@
 class ClickResPanel extends SlidePanelBase {
-    public constructor() {
-        super();
+    public constructor(viewParent:any) {
+        super(viewParent);
 
         this.uiSkinName = new ClickResPanelSkin();
 

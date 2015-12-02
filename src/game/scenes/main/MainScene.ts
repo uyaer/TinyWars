@@ -37,13 +37,13 @@ class MainScene extends SceneBase {
 
     private initMenuTab() {
         var arr = [
-            new MenuTabButton(this.btnHome, "menu_food_png"),
-            new MenuTabButton(this.btnBuilding, "menu_build_png"),
-            new MenuTabButton(this.btnTechnology, "menu_technology_png"),
-            new MenuTabButton(this.btnCamp, "menu_war_png"),
-            new MenuTabButton(this.btnAlliance, "menu_union_png"),
-            new MenuTabButton(this.btnShop, "menu_shop_png"),
-            new MenuTabButton(this.btnSetting, "menu_setting_png")
+            new WrapTabItemButton(this.btnHome, "menu_food_png"),
+            new WrapTabItemButton(this.btnBuilding, "menu_build_png"),
+            new WrapTabItemButton(this.btnTechnology, "menu_technology_png"),
+            new WrapTabItemButton(this.btnCamp, "menu_war_png"),
+            new WrapTabItemButton(this.btnAlliance, "menu_union_png"),
+            new WrapTabItemButton(this.btnShop, "menu_shop_png"),
+            new WrapTabItemButton(this.btnSetting, "menu_setting_png")
         ];
         this.menuTab = new SimpleTab(arr);
         this.menuTab.itemChangeCallback = this.onMenuTabItemChange.bind(this);
@@ -109,13 +109,12 @@ class MainScene extends SceneBase {
 
 
     private onMenuTabItemChange(index:number) {
-        var arr = [ClickResPanel];
+        var arr = [ClickResPanel,BuildingGroupPanel];
         if (this.viewPanel) {
             this.viewPanel.hide();
         }
-        this.viewPanel = new arr[index]();
-        this.viewPanel.y = 300;
-        this.viewPanel.viewParent = this;
+        this.viewPanel = new arr[index](this);
+        this.viewPanel.y = 320;
     }
 
 

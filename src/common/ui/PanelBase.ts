@@ -3,10 +3,12 @@ class PanelBase extends eui.Panel {
     /**
      * 设置父对象
      */
-    public viewParent:any;
+    private _viewParent:any;
 
-    public constructor() {
+    public constructor(viewParent:any) {
         super();
+
+        this._viewParent = viewParent;
 
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTap, this);
@@ -39,7 +41,6 @@ class PanelBase extends eui.Panel {
         RES.destroyRes(this._resGroup);
     }
 
-
     private closeBtn:eui.Button;
     private _startPos:egret.Point;
     /**
@@ -52,6 +53,13 @@ class PanelBase extends eui.Panel {
      * @private
      */
     private _isResLoaded:boolean = false;
+
+    public set viewParent(val:any) {
+        this._viewParent = val;
+        if (!this._resGroup || !this.uiSkinName) {
+            this._viewParent.addChild(this);
+        }
+    }
 
     public init(resGroup:string) {
         this._resGroup = resGroup;
@@ -86,7 +94,11 @@ class PanelBase extends eui.Panel {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
             this.skinName = null;
             this.skinName = this.uiSkinName;
-            this.viewParent.addChild(this);
+            if(this._viewParent){
+                this._viewParent.addChild(this);
+            }else{
+                GameLayerManager.instance.popLayer.addChild(this);
+            }
         }
     }
 
@@ -127,7 +139,7 @@ class PanelBase extends eui.Panel {
     /**
      * 显示动画完成后
      */
-    public onShowAnimateOver() {
+    protected onShowAnimateOver() {
 
     }
 

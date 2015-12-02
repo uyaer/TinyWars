@@ -71,6 +71,7 @@ class SimpleTab {
         for (var i = 0; i < this.itemArr.length; i++) {
             var item = this.itemArr[i];
             item.removeEvent(egret.TouchEvent.TOUCH_TAP, this.onItemClick, this);
+            UIUtils.removeSelf(item.getTarget());
         }
         this.itemChangeCallback = null;
         this.itemArr = null;

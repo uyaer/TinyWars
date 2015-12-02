@@ -15,6 +15,10 @@
 	{
 		"keys":"click_res_json",
 		"name":"clickres"
+	},
+	{
+		"keys":"building_json",
+		"name":"building"
 	}],
 	"resources":[
 	{
@@ -134,7 +138,7 @@
 	},
 	{
 		"name":"common_json",
-		"subkeys":"btn_building_gray_png,btn_building_png,btn_yellow_png,loading_panel_png,loading_scene_logo_png,menu_bg_png,menu_build_png,menu_dinfo_png,menu_ef_png,menu_food_png,menu_setting_png,menu_shop_png,menu_technology_png,menu_union_png,menu_war_png,res_icon_101_png,res_icon_102_png,res_icon_103_png,res_icon_104_png,res_icon_105_png,res_icon_106_png,res_icon_107_png,res_icon_108_png,res_icon_109_png,res_icon_110_png,tab1_png,tab1_select_png,tab2_png,tab2_select_png,top_input_png",
+		"subkeys":"btn_building_gray_png,btn_building_png,btn_yellow_png,item_bg_png,loading_panel_png,loading_scene_logo_png,menu_bg_png,menu_build_png,menu_dinfo_png,menu_ef_png,menu_food_png,menu_setting_png,menu_shop_png,menu_technology_png,menu_union_png,menu_war_png,res_icon_101_png,res_icon_102_png,res_icon_103_png,res_icon_104_png,res_icon_105_png,res_icon_106_png,res_icon_107_png,res_icon_108_png,res_icon_109_png,res_icon_110_png,tab1_png,tab1_select_png,tab2_png,tab2_select_png,top_input_png",
 		"type":"sheet",
 		"url":"assets/common/ui/common.json"
 	},
@@ -170,5 +174,11 @@
 		"subkeys":"bigapple_png,bigstone_png,bigwood_png",
 		"type":"sheet",
 		"url":"assets/main/click_res/ui/click_res.json"
+	},
+	{
+		"name":"building_json",
+		"subkeys":"building_icon_101_png,building_icon_102_png,building_icon_103_png,building_icon_104_png,building_icon_105_png,building_icon_106_png,building_icon_107_png,building_icon_108_png,building_icon_109_png,building_icon_110_png,building_icon_111_png,building_icon_112_png,building_icon_113_png,building_icon_114_png,factory_bar_off_png,factory_bar_on_png",
+		"type":"sheet",
+		"url":"assets/main/building/ui/building.json"
 	}]
 }

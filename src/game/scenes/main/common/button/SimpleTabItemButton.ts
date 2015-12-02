@@ -1,5 +1,5 @@
 /**
- * 类型tab
+ * 简单类型的Tab item，需要手动进行new，如果在舞台上的按钮请使用WrapTabItemButton
  */
 class SimpleTabItemButton extends eui.Button implements ISimpleTabItem {
 

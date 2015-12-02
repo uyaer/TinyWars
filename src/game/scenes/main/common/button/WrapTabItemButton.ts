@@ -1,13 +1,17 @@
 /**
- * 菜单选项
+ * 已经在舞台上的按钮包裹一层协议
  */
-class MenuTabButton implements ISimpleTabItem {
+class WrapTabItemButton implements ISimpleTabItem {
     private btn:eui.Button;
 
     public constructor(btn:eui.Button, icon:string) {
 
         this.btn = btn;
-        this.btn.icon = icon;
+        if(this.btn.iconDisplay){
+            this.btn.icon = icon;
+        }else{
+            this.btn.label = icon;
+        }
     }
 
     /**

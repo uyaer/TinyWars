@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="FactoryBuildingItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="640">
+	<e:Image source="item_bg_png" scale9Grid="12,32,7,22" width="350" x="143" y="11"/>
+	<e:Label id="nameTF" text="铁匠铺" x="149" y="14" size="20"/>
+	<e:Label id="descTF" size="18" y="41" text="食物生产速度" x="149" textColor="0xF3EFEF"/>
+	<e:Label id="lvTF" size="20" y="40" textColor="0xF3EFEF" text="Lv.1000" right="157"/>
+	<e:Label id="effectDescTF" size="18" y="16" text="将石头转成金属(10转1)" right="154" textColor="0xFFFF22"/>
+	<e:Image id="icon" x="45" y="-1" source="building_icon_104_png"/>
+	<e:Button id="buildBtn" label="+1" skinName="BuildingButtonSkin" horizontalCenter="234" verticalCenter="-0.5">
+	</e:Button>
+	<e:Group id="costGroup" width="324" height="26" x="145" y="60"/>
+	<e:Label id="effectTF" y="40" textColor="0x74DB00" text="100/s" size="20" x="268"/>
+	<e:ToggleButton id="openBtn" label="切换按钮" x="12" verticalCenter="0.5">
+		<e:skinName>
+			<e:Skin states="up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected">
+				<e:Image width="100%" height="100%" source="factory_bar_on_png" 
+				         source.upAndSelected="factory_bar_off_png" 
+				         source.downAndSelected="factory_bar_off_png" 
+				         source.disabledAndSelected="factory_bar_off_png" 
+				         />
+			</e:Skin>
+		</e:skinName>
+	</e:ToggleButton>
+</e:Skin>

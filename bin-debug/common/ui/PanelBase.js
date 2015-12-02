@@ -1,6 +1,6 @@
 var PanelBase = (function (_super) {
     __extends(PanelBase, _super);
-    function PanelBase() {
+    function PanelBase(viewParent) {
         _super.call(this);
         /**
          * 资源是否加载完成
@@ -8,6 +8,7 @@ var PanelBase = (function (_super) {
          * @private
          */
         this._isResLoaded = false;
+        this._viewParent = viewParent;
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTap, this);
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
@@ -35,6 +36,14 @@ var PanelBase = (function (_super) {
     p.destroy = function () {
         RES.destroyRes(this._resGroup);
     };
+    d(p, "viewParent",undefined
+        ,function (val) {
+            this._viewParent = val;
+            if (!this._resGroup || !this.uiSkinName) {
+                this._viewParent.addChild(this);
+            }
+        }
+    );
     p.init = function (resGroup) {
         this._resGroup = resGroup;
         this._isResLoaded = false;
@@ -67,7 +76,12 @@ var PanelBase = (function (_super) {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
             this.skinName = null;
             this.skinName = this.uiSkinName;
-            this.viewParent.addChild(this);
+            if (this._viewParent) {
+                this._viewParent.addChild(this);
+            }
+            else {
+                GameLayerManager.instance.popLayer.addChild(this);
+            }
         }
     };
     p.createChildren = function () {
@@ -96,7 +110,13 @@ var PanelBase = (function (_super) {
             y: toY,
             scaleX: 1,
             scaleY: 1
-        }, 250, egret.Ease.backOut);
+        }, 250, egret.Ease.backOut)
+            .call(this.onShowAnimateOver, this);
+    };
+    /**
+     * 显示动画完成后
+     */
+    p.onShowAnimateOver = function () {
     };
     p.onHide = function () {
         var toX = Const.WIN_W;
