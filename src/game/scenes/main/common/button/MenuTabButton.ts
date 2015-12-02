@@ -1,3 +1,6 @@
+/**
+ * 菜单选项
+ */
 class MenuTabButton implements ISimpleTabItem {
     private btn:eui.Button;
 

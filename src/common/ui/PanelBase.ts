@@ -120,7 +120,15 @@ class PanelBase extends eui.Panel {
             y: toY,
             scaleX: 1,
             scaleY: 1
-        }, 250, egret.Ease.backOut);
+        }, 250, egret.Ease.backOut)
+            .call(this.onShowAnimateOver, this);
+    }
+
+    /**
+     * 显示动画完成后
+     */
+    public onShowAnimateOver() {
+
     }
 
     protected onHide() {
@@ -138,7 +146,7 @@ class PanelBase extends eui.Panel {
         }, 250, egret.Ease.backIn).call(UIUtils.removeSelf, this, [this]);
     }
 
-    public hide(){
+    public hide() {
         this.onHide();
     }
 }
