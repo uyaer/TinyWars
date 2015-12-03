@@ -5,9 +5,11 @@ class SlidePanelBase extends PanelBase {
 
     protected onShow() {
         this.x = Const.WIN_W;
-        egret.Tween.get(this).to({
-            x: 0,
-        }, 200);
+        egret.Tween.get(this)
+            .to({
+                x: 0,
+            }, 200)
+            .call(this.onShowAnimateOver, this);
     }
 
     protected onHide() {

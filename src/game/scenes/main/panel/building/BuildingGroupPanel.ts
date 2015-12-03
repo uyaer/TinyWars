@@ -2,8 +2,18 @@
  * 建筑页面总页面
  */
 class BuildingGroupPanel extends SlidePanelBase {
+    /**
+     * 上面的类型切换
+     */
     private typeTab:SimpleTab;
+    /**
+     * 下面的数量切换
+     */
     private numberTab:SimpleTab;
+    /**
+     * 中间的item组
+     */
+    private groupList:BuildGroupList;
 
     public constructor(viewParent:any) {
         super(viewParent);
@@ -13,6 +23,7 @@ class BuildingGroupPanel extends SlidePanelBase {
 
         this.initTypesButton();
         this.initNumberModeButton();
+        this.initGroupList();
     }
 
     /**
@@ -59,12 +70,24 @@ class BuildingGroupPanel extends SlidePanelBase {
         this.numberTab.itemChangeCallback = this.onNumberTabItemChange.bind(this);
     }
 
+    /**
+     * 建筑项目列表
+     */
+    private initGroupList() {
+        this.groupList = new BuildGroupList();
+        this.groupList.y = 70;
+        this.addChild(this.groupList);
+    }
+
 
     private onTypeTabItemChange(index:number) {
         //TODO build type change
-        if(index ==0){
-            this.makeResBuildingItem();
-        }
+        var category:any[] = [BuildingCategory.resGroup, BuildingCategory.storeGroup,
+            BuildingCategory.factoryGroup, BuildingCategory.warGroup];
+        var itemClassArr:any[] = [ResBuildingItem, StoreBuildingItem,
+            FactoryBuildingItem, WarBuildingItem];
+
+        this.makeBuildingItem(category[index], itemClassArr[index]);
     }
 
     private onNumberTabItemChange(index:number) {
@@ -74,8 +97,9 @@ class BuildingGroupPanel extends SlidePanelBase {
     /**
      * 创建
      */
-    private makeResBuildingItem(){
-        var arr = []
+    private makeBuildingItem(arr:number[], itemClass:any) {
+        this.groupList.itemClass = itemClass;
+        this.groupList.dataProvider = arr;
     }
 
     protected onShowAnimateOver() {

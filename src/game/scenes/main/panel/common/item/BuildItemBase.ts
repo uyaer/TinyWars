@@ -1,4 +1,4 @@
-class BuildingItemBase extends eui.ItemRenderer {
+class BuildItemBase extends eui.ItemRenderer {
     protected buildingType:number;
 
     public constructor(type) {

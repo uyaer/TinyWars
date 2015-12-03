@@ -1,4 +1,4 @@
-class FactoryBuildingItem extends BuildingItemBase {
+class FactoryBuildingItem extends BuildItemBase {
     public constructor(type:number) {
         super(type);
 

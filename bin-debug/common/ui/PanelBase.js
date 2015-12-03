@@ -105,7 +105,8 @@ var PanelBase = (function (_super) {
         var toX = (Const.WIN_W - this.width) / 2;
         var toY = (Const.WIN_H - this.height) / 2;
         this.scaleX = this.scaleY = 0;
-        egret.Tween.get(this).to({
+        egret.Tween.get(this)
+            .to({
             x: toX,
             y: toY,
             scaleX: 1,

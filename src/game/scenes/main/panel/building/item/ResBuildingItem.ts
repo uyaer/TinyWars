@@ -1,4 +1,4 @@
-class ResBuildingItem extends BuildingItemBase {
+class ResBuildingItem extends BuildItemBase {
     public constructor(type) {
         super(type);
 

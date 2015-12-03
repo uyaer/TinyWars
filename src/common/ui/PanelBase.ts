@@ -94,9 +94,9 @@ class PanelBase extends eui.Panel {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
             this.skinName = null;
             this.skinName = this.uiSkinName;
-            if(this._viewParent){
+            if (this._viewParent) {
                 this._viewParent.addChild(this);
-            }else{
+            } else {
                 GameLayerManager.instance.popLayer.addChild(this);
             }
         }
@@ -127,12 +127,13 @@ class PanelBase extends eui.Panel {
         var toX = (Const.WIN_W - this.width) / 2;
         var toY = (Const.WIN_H - this.height) / 2;
         this.scaleX = this.scaleY = 0;
-        egret.Tween.get(this).to({
-            x: toX,
-            y: toY,
-            scaleX: 1,
-            scaleY: 1
-        }, 250, egret.Ease.backOut)
+        egret.Tween.get(this)
+            .to({
+                x: toX,
+                y: toY,
+                scaleX: 1,
+                scaleY: 1
+            }, 250, egret.Ease.backOut)
             .call(this.onShowAnimateOver, this);
     }
 
