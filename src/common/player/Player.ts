@@ -17,6 +17,21 @@ class Player {
         return Player._instance;
     }
 
+    /**
+     * 最大建造按钮索引
+     * @type {number}
+     */
+    public buildNumberIndex:number = 0;
+
+    /**
+     * 获取最大建造数量
+     * @returns {number}
+     */
+    public get buildMax() {
+        return Math.pow(10, this.buildNumberIndex);
+    }
+
+
     private _vo:UserVo = new UserVo();
     public get vo() {
         return this._vo;
@@ -51,6 +66,25 @@ class Player {
     public addResourceCount(type:number, num:number) {
         var count:number = this._vo.resource.get(type) || 0;
         this._vo.resource.set(type, count + num);
+        EventManager.instance.dispatch(EventName.RESOURCE_CHANGE, [type]);
+    }
+
+    /**
+     * 避免过多事件，所以批量更新资源数据
+     * @param types
+     * @param numArr
+     */
+    public addResourceCountBatch(types:number[], numArr:number[]) {
+        if (types.length != numArr.length) {
+            throw new Error("数量不匹配");
+        }
+        for (var i = 0; i < types.length; i++) {
+            var type = types[i];
+            var num = numArr[i];
+            var count:number = this._vo.resource.get(type) || 0;
+            this._vo.resource.set(type, count + num);
+        }
+        EventManager.instance.dispatch(EventName.RESOURCE_CHANGE, types);
     }
 
     /**

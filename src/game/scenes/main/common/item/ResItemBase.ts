@@ -1,5 +1,5 @@
 class ResItemBase extends eui.Component {
-    protected resType:number;
+    public resType:number;
 
     public constructor(type:number) {
         super();

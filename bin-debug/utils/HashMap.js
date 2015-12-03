@@ -9,8 +9,24 @@ var HashMap = (function () {
     p.put = function (K, V) {
         this.set(K, V);
     };
-    p.get = function (K) {
-        return this.data[K];
+    /**
+     * 根据Key获得数据，可以传入默认值
+     * @param K
+     * @param V
+     * @returns {any}
+     */
+    p.get = function (K, V) {
+        if (arguments.length == 1) {
+            return this.data[K];
+        }
+        else {
+            if (this.has(K)) {
+                return this.data[K];
+            }
+            else {
+                return V;
+            }
+        }
     };
     p.has = function (K) {
         return this.data.hasOwnProperty(K);

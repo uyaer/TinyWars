@@ -9,8 +9,22 @@ class HashMap<K,V> {
         this.set(K, V);
     }
 
-    public get(K):V {
-        return this.data[K];
+    /**
+     * 根据Key获得数据，可以传入默认值
+     * @param K
+     * @param V
+     * @returns {any}
+     */
+    public get(K, V?):V {
+        if (arguments.length == 1) {
+            return this.data[K];
+        } else {
+            if (this.has(K)) {
+                return this.data[K];
+            } else {
+                return V;
+            }
+        }
     }
 
     public has(K):boolean {
@@ -34,7 +48,7 @@ class HashMap<K,V> {
      * 重新设置
      * @param obj
      */
-    public reset(obj){
+    public reset(obj) {
         this.data = obj.data || obj;
     }
 

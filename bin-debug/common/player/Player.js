@@ -3,6 +3,11 @@
  */
 var Player = (function () {
     function Player() {
+        /**
+         * 最大建造按钮索引
+         * @type {number}
+         */
+        this.buildNumberIndex = 0;
         this._vo = new UserVo();
         /**
          * 点击资源可以获得的数量
@@ -26,6 +31,15 @@ var Player = (function () {
                 Player._instance = new Player();
             }
             return Player._instance;
+        }
+    );
+    d(p, "buildMax"
+        /**
+         * 获取最大建造数量
+         * @returns {number}
+         */
+        ,function () {
+            return Math.pow(10, this.buildNumberIndex);
         }
     );
     d(p, "vo"
@@ -59,6 +73,24 @@ var Player = (function () {
     p.addResourceCount = function (type, num) {
         var count = this._vo.resource.get(type) || 0;
         this._vo.resource.set(type, count + num);
+        EventManager.instance.dispatch(EventName.RESOURCE_CHANGE, [type]);
+    };
+    /**
+     * 避免过多事件，所以批量更新资源数据
+     * @param types
+     * @param numArr
+     */
+    p.addResourceCountBatch = function (types, numArr) {
+        if (types.length != numArr.length) {
+            throw new Error("数量不匹配");
+        }
+        for (var i = 0; i < types.length; i++) {
+            var type = types[i];
+            var num = numArr[i];
+            var count = this._vo.resource.get(type) || 0;
+            this._vo.resource.set(type, count + num);
+        }
+        EventManager.instance.dispatch(EventName.RESOURCE_CHANGE, types);
     };
     /**
      * 计算资源增加速率

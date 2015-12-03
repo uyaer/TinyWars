@@ -53,7 +53,7 @@ class BuildingGroupPanel extends SlidePanelBase {
             this.numberTab.destroy();
         }
         //var arr = ["x1", "x10", "x100", "x1K", "x10K"];
-        var arr = ["x1"];
+        var arr = ["x1","x10", "x100"];
         var len = arr.length;
         var w = len * 115 + (len - 1) * 10;
         var left = (Const.WIN_W - w) / 2;
@@ -67,6 +67,7 @@ class BuildingGroupPanel extends SlidePanelBase {
             itemArr.push(item);
         }
         this.numberTab = new SimpleTab(itemArr);
+        this.numberTab.selectIndex = Player.instance.buildNumberIndex;
         this.numberTab.itemChangeCallback = this.onNumberTabItemChange.bind(this);
     }
 
@@ -91,7 +92,14 @@ class BuildingGroupPanel extends SlidePanelBase {
     }
 
     private onNumberTabItemChange(index:number) {
-        //TODO build number change
+        // build number change
+        Player.instance.buildNumberIndex = index;
+        var num:number = Player.instance.buildMax;
+        var len = this.groupList.allItems.length;
+        for (var i = 0; i < len; i++) {
+            var item = this.groupList.allItems[i];
+            item.updateBuildMax(num);
+        }
     }
 
     /**

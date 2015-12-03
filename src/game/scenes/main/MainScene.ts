@@ -29,11 +29,6 @@ class MainScene extends SceneBase {
     private resItemArr:ResItemBase[];
     private landscape:Landscape;
     private viewPanel:SlidePanelBase;
-    /**
-     * * 每一秒的时间计时器
-     */
-    private timer:egret.Timer;
-
 
     protected createChildren() {
         super.createChildren();
@@ -41,7 +36,7 @@ class MainScene extends SceneBase {
         this.initMenuTab();
         this.initResItem();
         this.initLandscape();
-        this.initUpdateTimer();
+        this.initUpdateEvent();
     }
 
     private initMenuTab() {
@@ -97,22 +92,24 @@ class MainScene extends SceneBase {
     }
 
     /**
-     * 创建刷新界面的计时器
+     * 添加资源更新事件
      */
-    private initUpdateTimer() {
-        this.timer = new egret.Timer(500);
-        this.timer.addEventListener(egret.TimerEvent.TIMER, this.onUpdateTimer, this);
-        this.timer.start();
+    private initUpdateEvent() {
+        EventManager.instance.addEvent(EventName.RESOURCE_CHANGE,
+            this.onResourceUpdate, this);
     }
 
     /**
      * 每一秒的时间计时器执行
      */
-    private onUpdateTimer() {
+    private onResourceUpdate(e:egret.Event) {
+        var types:number[] = e.data;
         var len = this.resItemArr.length;
         for (var i = 0; i < len; i++) {
             var item = this.resItemArr[i];
-            item.update();
+            if (Util.isElinArr(item.resType, types)) {
+                item.update();
+            }
         }
     }
 
@@ -130,7 +127,7 @@ class MainScene extends SceneBase {
     protected destroy() {
         this.menuTab.destroy();
         this.landscape.destroy();
-        this.timer.removeEventListener(egret.TimerEvent.TIMER, this.onUpdateTimer, this);
-        this.timer.stop();
+        EventManager.instance.removeEvent(EventName.RESOURCE_CHANGE,
+            this.onResourceUpdate, this);
     }
 }

@@ -26,8 +26,9 @@ class BuildItemBase extends eui.ItemRenderer {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
 
         this.addEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoved, this);
-        if(!this.fixedMax){ //最大建造
-            EventManager.instance.addEvent()
+        if (!this.fixedMax) { //最大建造
+            EventManager.instance.addEvent(EventName.RESOURCE_CHANGE,
+                this.onResourceChange, this);
         }
     }
 
@@ -36,6 +37,10 @@ class BuildItemBase extends eui.ItemRenderer {
      */
     protected onRemoved() {
         this.removeEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoved, this);
+        if (!this.fixedMax) {
+            EventManager.instance.removeEvent(EventName.RESOURCE_CHANGE,
+                this.onResourceChange, this);
+        }
         UIUtils.removeButtonScaleEffects(this);
 
         this.destroy();
@@ -61,7 +66,8 @@ class BuildItemBase extends eui.ItemRenderer {
         UIUtils.addButtonScaleEffects(this);
 
 
-        this.buildBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuildClick, this);
+        this.buildBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,
+            this.onBuildClick, this);
     }
 
     private onBuildClick() {
@@ -75,6 +81,20 @@ class BuildItemBase extends eui.ItemRenderer {
     public updateBuildMax(max:number) {
         this.buildMax = max;
 
+        this.updateBuildNumber();
+    }
+
+    /**
+     * 当资源有变化当时候 （需要重写）
+     */
+    protected onResourceChange(e:egret.Event){
+
+    }
+
+    /**
+     * 更新可以建筑的等级次数（需要重写）
+     */
+    protected updateBuildNumber() {
 
     }
 }

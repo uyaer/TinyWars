@@ -82,7 +82,7 @@ class BuildGroupList extends eui.Group {
             }
 
             //延迟
-            egret.setTimeout(this.showNewItems, this, len * 100);
+            egret.setTimeout(this.showNewItems, this, len * 50);
         } else {
             this.showNewItems();
         }
@@ -101,5 +101,13 @@ class BuildGroupList extends eui.Group {
                 .wait(100 * i)
                 .to({x: 0}, 200)
         }
+    }
+
+    /**
+     * 获取所有当item
+     * @returns {BuildItemBase[]}
+     */
+    public get allItems(){
+        return this.itemArr;
     }
 }

@@ -50,21 +50,35 @@ var Util = (function () {
      * @returns {string}
      */
     Util.getBigNumberShow = function (num) {
-        if (num < 1000) {
+        if (num < 10000) {
             return num + "";
         }
-        else if (num < 10000) {
-            num /= 1000;
-            return num.toFixed(2) + " K";
-        }
-        else if (num < 10000000) {
-            num /= 10000;
-            return num.toFixed(2) + " W";
-        }
         else {
-            num /= 10000000;
-            return num.toFixed(2) + " KW";
+            num /= 10000;
+            return num.toFixed(1) + "K";
         }
+    };
+    /**
+     * 元素是否包含在Array里
+     * @param el
+     * @param arr
+     * @returns {boolean}
+     */
+    Util.isElinArr = function (el, arr) {
+        return arr.indexOf(el) > -1;
+    };
+    /**
+     * 2个Array是否有相交元素
+     * @param arr1
+     * @param arr2
+     */
+    Util.isArrCrossing = function (arr1, arr2) {
+        for (var i = 0; i < arr1.length; i++) {
+            if (Util.isElinArr(arr1[i], arr2)) {
+                return true;
+            }
+        }
+        return false;
     };
     return Util;
 })();

@@ -35,6 +35,10 @@ class BuildingVo {
      * ？？？
      */
     rate:number;
+    /**
+     * 消耗道具id的数组
+     */
+    costIdArr:number[];
 
     public constructor(obj) {
         this.id = obj["id"];
@@ -50,8 +54,11 @@ class BuildingVo {
 
     private getCost(arr:any[]):BuildingCostVo[] {
         var costArr:BuildingCostVo[] = [];
+        this.costIdArr = [];
         for (var i = 0; i < arr.length; i++) {
-            costArr.push(new BuildingCostVo(arr[i]));
+            var vo = new BuildingCostVo(arr[i], this.id);
+            costArr.push(vo);
+            this.costIdArr.push(vo.propId);
         }
         return costArr;
     }
@@ -68,17 +75,25 @@ class BuildingCostVo {
     private par1:number;
     private par2:number;
     private par3:number;
+    /**
+     * 建筑你类型
+     */
+    private buildType:number;
 
-    public constructor(obj) {
+    public constructor(obj, type) {
+        this.buildType = type;
         this.propId = obj["prop"];
         this.par1 = obj["par1"];
         this.par2 = obj["par2"];
         this.par3 = obj["par3"];
     }
 
-    public getCount(level:number):number {
+    public getCount(level?:number):number {
         //TODO 根据公式计算需要材料的数量
+        if (!level) {
+            level = Player.instance.vo.building.get(this.buildType, 0);
+        }
 
-        return 0;
+        return 1;
     }
 }
