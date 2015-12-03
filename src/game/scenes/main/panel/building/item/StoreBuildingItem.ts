@@ -1,4 +1,4 @@
-class StoreBuildingItem extends BuildItemBase {
+class StoreBuildingItem extends BuildingItemBase {
     public constructor(type) {
         super(type);
 

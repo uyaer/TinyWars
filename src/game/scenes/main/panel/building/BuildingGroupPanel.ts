@@ -81,7 +81,7 @@ class BuildingGroupPanel extends SlidePanelBase {
 
 
     private onTypeTabItemChange(index:number) {
-        //TODO build type change
+        // build type change
         var category:any[] = [BuildingCategory.resGroup, BuildingCategory.storeGroup,
             BuildingCategory.factoryGroup, BuildingCategory.warGroup];
         var itemClassArr:any[] = [ResBuildingItem, StoreBuildingItem,

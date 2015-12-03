@@ -1,13 +1,22 @@
 class BuildItemBase extends eui.ItemRenderer {
-    protected buildingType:number;
+    protected type:number;
+    /**
+     * 建造最大值是否是固定的
+     * @type {boolean}
+     */
+    protected fixedMax:boolean = false;
+    /**
+     * 建造最大值
+     * @type {number}
+     */
+    protected buildMax:number = 1;
 
     public constructor(type) {
         super();
 
-        this.buildingType = type;
+        this.type = type;
 
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
-        this.addEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoved, this);
     }
 
     /**
@@ -15,6 +24,11 @@ class BuildItemBase extends eui.ItemRenderer {
      */
     protected  onAdded() {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
+
+        this.addEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoved, this);
+        if(!this.fixedMax){ //最大建造
+            EventManager.instance.addEvent()
+        }
     }
 
     /**
@@ -34,10 +48,11 @@ class BuildItemBase extends eui.ItemRenderer {
 
     }
 
-    private nameTF:eui.Label;
-    private descTF:eui.Label;
-    private lvTF:eui.Label;
-    private costGroup:eui.Group;
+    protected icon:eui.Image;
+    protected nameTF:eui.Label;
+    protected descTF:eui.Label;
+    protected lvTF:eui.Label;
+    protected costGroup:eui.Group;
     protected buildBtn:eui.Button;
 
     protected createChildren() {
@@ -45,10 +60,21 @@ class BuildItemBase extends eui.ItemRenderer {
 
         UIUtils.addButtonScaleEffects(this);
 
+
         this.buildBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuildClick, this);
     }
 
     private onBuildClick() {
+
+    }
+
+    /**
+     * 更新建造最大值（需要重新,跟个类型的逻辑不同）
+     * @param max
+     */
+    public updateBuildMax(max:number) {
+        this.buildMax = max;
+
 
     }
 }

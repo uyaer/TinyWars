@@ -4,7 +4,16 @@ class MainScene extends SceneBase {
 
         this.skinName = new MainSceneSkin();
 
+        this.initCommonConfig();
+    }
 
+    /**
+     * 初始化配置表
+     */
+    private initCommonConfig() {
+        var data = RES.getRes("data_json");
+        //建筑数据
+        BuildingDataManager.instance.init(data["building"]);
     }
 
     private btnHome:eui.Button;
@@ -109,7 +118,7 @@ class MainScene extends SceneBase {
 
 
     private onMenuTabItemChange(index:number) {
-        var arr = [ClickResPanel,BuildingGroupPanel];
+        var arr = [ClickResPanel, BuildingGroupPanel];
         if (this.viewPanel) {
             this.viewPanel.hide();
         }

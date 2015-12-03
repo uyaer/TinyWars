@@ -58,6 +58,7 @@ var game_file_list = [
 	"bin-debug/game/scenes/main/panel/building/data/BuildingDataManager.js",
 	"bin-debug/game/scenes/main/panel/building/data/vo/BuildingVo.js",
 	"bin-debug/game/scenes/main/panel/common/item/BuildItemBase.js",
+	"bin-debug/game/scenes/main/panel/building/item/BuildingItemBase.js",
 	"bin-debug/game/scenes/main/panel/building/item/FactoryBuildingItem.js",
 	"bin-debug/game/scenes/main/panel/building/item/ResBuildingItem.js",
 	"bin-debug/game/scenes/main/panel/building/item/StoreBuildingItem.js",

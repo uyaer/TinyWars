@@ -14,7 +14,7 @@ class BuildingDataManager {
         return BuildingDataManager._instance;
     }
 
-    private buildingDataBaseMap:HashMap<number,BuildingVo> = new HashMap<number,BuildingVo>();
+    public buildingDataBaseMap:HashMap<number,BuildingVo> = new HashMap<number,BuildingVo>();
 
     /**
      * 初始化资源
