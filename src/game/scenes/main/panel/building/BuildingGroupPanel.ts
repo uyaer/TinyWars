@@ -117,9 +117,10 @@ class BuildingGroupPanel extends SlidePanelBase {
     }
 
     protected destroy() {
-        super.destroy();
 
         this.typeTab.destroy();
         this.numberTab.destroy();
+
+        super.destroy();
     }
 }

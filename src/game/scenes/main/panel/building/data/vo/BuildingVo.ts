@@ -32,9 +32,13 @@ class BuildingVo {
      */
     exp:number;
     /**
-     * ？？？
+     * 消耗比例
      */
     rate:number;
+    /**
+     * 效果描述
+     */
+    eff_desc:string;
     /**
      * 消耗道具id的数组
      */
@@ -50,6 +54,7 @@ class BuildingVo {
         this.cd_time = obj["cd_time"];
         this.exp = obj["exp"];
         this.rate = obj["rate"];
+        this.eff_desc = obj["eff_desc"];
     }
 
     private getCost(arr:any[]):BuildingCostVo[] {

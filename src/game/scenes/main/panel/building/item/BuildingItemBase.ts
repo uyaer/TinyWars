@@ -1,5 +1,5 @@
 class BuildingItemBase extends BuildItemBase {
-    private vo:BuildingVo;
+    protected vo:BuildingVo;
 
     private costItemArr:CostResItem[];
 

@@ -64,7 +64,7 @@ class PanelBase extends eui.Panel {
     public init(resGroup:string) {
         this._resGroup = resGroup;
         this._isResLoaded = false;
-        egret.setTimeout(this.showPreLoading, this, 1);
+        egret.setTimeout(this.showPreLoading, this, 50);
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onGroupResourceLoaded, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
         RES.loadGroup(resGroup);

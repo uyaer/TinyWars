@@ -15,7 +15,7 @@ class ResName {
      {"id":109,"name":"龙晶","icon":"mater_109_png","ptype":2},
      {"id":110,"name":"圣石","icon":"mater_110_png","ptype":2}
      */
-    private static _name = ["", "金币", "奖杯", "食物", "木头", "石头", "金属", "皮革", "马匹", "龙晶", "神石"];
+    private static _name = ["", "金币", "奖杯", "食物", "木头", "石头", "金属", "皮革", "战马", "龙晶", "神石"];
 
     public static getName(type:number) {
         return ResName._name[type - 100];

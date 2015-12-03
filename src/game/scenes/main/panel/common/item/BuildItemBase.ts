@@ -56,6 +56,7 @@ class BuildItemBase extends eui.ItemRenderer {
     protected icon:eui.Image;
     protected nameTF:eui.Label;
     protected descTF:eui.Label;
+    protected effectTF:eui.Label;
     protected lvTF:eui.Label;
     protected costGroup:eui.Group;
     protected buildBtn:eui.Button;
