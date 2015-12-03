@@ -1,6 +1,8 @@
 class BuildingItemBase extends BuildItemBase {
     private vo:BuildingVo;
 
+    private costItemArr:CostResItem[];
+
     public constructor(type) {
         super(type);
 
@@ -17,7 +19,20 @@ class BuildingItemBase extends BuildItemBase {
         this.icon.source = "building_icon_" + this.type + "_png";
         this.nameTF.text = this.vo.name;
         this.descTF.text = this.vo.desc;
-        this.lvTF.text = "Lv." + Player.instance.vo.building.get(this.type);
+        this.lvTF.text = "Lv." + Player.instance.vo.building.get(this.type, 0);
+
+        //cost
+        this.costItemArr = [];
+        var left = 0;
+        for (var i = 0; i < this.vo.cost.length; i++) {
+            var cvo:BuildingCostVo = this.vo.cost[i];
+            var item:CostResItem = new CostResItem(cvo.propId);
+            item.updateView(cvo.getCount());
+            item.x = left;
+            left += item.width + 10;
+            this.costGroup.addChild(item);
+            this.costItemArr.push(item);
+        }
     }
 
     /**
@@ -49,6 +64,15 @@ class BuildingItemBase extends BuildItemBase {
 
         //update View
         this.buildBtn.label = "+" + maxNum;
+
+        //cost item
+        if(this.costItemArr){
+            for (var i = 0; i < this.vo.cost.length; i++) {
+                var cvo:BuildingCostVo = this.vo.cost[i];
+                var item = this.costItemArr[i];
+                item.updateView(cvo.getCount() * maxNum);
+            }
+        }
     }
 
 }

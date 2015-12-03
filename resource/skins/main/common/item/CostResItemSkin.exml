@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="CostResItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label id="numTF" text="-2050.3K" size="20" verticalCenter="0.5" right="32" textAlign="right" verticalAlign="middle"/>
+	<e:Image id="icon" source="res_icon_103_png" y="1" width="26" height="26" right="2"/>
+</e:Skin>

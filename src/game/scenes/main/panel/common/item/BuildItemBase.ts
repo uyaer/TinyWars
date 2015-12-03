@@ -65,6 +65,9 @@ class BuildItemBase extends eui.ItemRenderer {
 
         UIUtils.addButtonScaleEffects(this);
 
+        if(!this.fixedMax){
+            this.updateBuildNumber();
+        }
 
         this.buildBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,
             this.onBuildClick, this);

@@ -64,6 +64,8 @@ declare class NumberTabItemButtonSkin extends eui.Skin{
 }
 declare class TypeTabItemButtonSkin extends eui.Skin{
 }
+declare class CostResItemSkin extends eui.Skin{
+}
 declare class FirstResItemSkin extends eui.Skin{
 }
 declare class SecondResItemSkin extends eui.Skin{

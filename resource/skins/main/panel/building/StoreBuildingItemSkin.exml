@@ -8,5 +8,5 @@
 	<e:Image id="icon" x="44" y="-1" source="building_icon_104_png"/>
 	<e:Button id="buildBtn" label="+1" skinName="BuildingButtonSkin" horizontalCenter="234" verticalCenter="-0.5">
 	</e:Button>
-	<e:Group id="costGroup" width="324" height="26" x="145" y="60"/>
+	<e:Group id="costGroup" width="324" height="26" x="153" y="60"/>
 </e:Skin>

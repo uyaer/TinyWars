@@ -75,7 +75,9 @@ var PanelBase = (function (_super) {
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onGroupResourceLoaded, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
             this.skinName = null;
-            this.skinName = this.uiSkinName;
+            if (this.uiSkinName) {
+                this.skinName = this.uiSkinName;
+            }
             if (this._viewParent) {
                 this._viewParent.addChild(this);
             }

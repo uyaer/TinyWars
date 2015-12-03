@@ -19,7 +19,7 @@ class BuildingGroupPanel extends SlidePanelBase {
         super(viewParent);
 
         this.skinName = null;
-        this.viewParent = viewParent;
+        this.init("building");
 
         this.initTypesButton();
         this.initNumberModeButton();

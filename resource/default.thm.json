@@ -35,6 +35,7 @@
     "resource/skins/main/common/button/BuildingButtonSkin.exml",
     "resource/skins/main/common/button/NumberTabItemButtonSkin.exml",
     "resource/skins/main/common/button/TypeTabItemButtonSkin.exml",
+    "resource/skins/main/common/item/CostResItemSkin.exml",
     "resource/skins/main/common/item/FirstResItemSkin.exml",
     "resource/skins/main/common/item/SecondResItemSkin.exml",
     "resource/skins/main/common/item/ThirdResItemSkin.exml",

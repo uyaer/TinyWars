@@ -50,6 +50,7 @@ var game_file_list = [
 	"bin-debug/game/scenes/main/MainScene.js",
 	"bin-debug/game/scenes/main/common/button/SimpleTabItemButton.js",
 	"bin-debug/game/scenes/main/common/button/WrapTabItemButton.js",
+	"bin-debug/game/scenes/main/common/item/CostResItem.js",
 	"bin-debug/game/scenes/main/common/item/ResItemBase.js",
 	"bin-debug/game/scenes/main/common/item/FirstResItem.js",
 	"bin-debug/game/scenes/main/common/item/SecondResItem.js",
