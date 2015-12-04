@@ -37,21 +37,23 @@ var Main = (function (_super) {
     p.createChildren = function () {
         _super.prototype.createChildren.call(this);
         //发布版屏蔽本地和非uyaer访问
-        if (RELEASE) {
-            if (egret.Capabilities.runtimeType == egret.RuntimeType.WEB) {
-                if (!egret.Capabilities.isMobile)
-                    return;
-                var url = location.href;
-                if (url.indexOf("2.168.") != -1
-                    || url.indexOf("ocalho") > -1
-                    || url.indexOf("yaer") == -1) {
-                    alert("发布版不支持本地预览，请发布后删除这句话");
-                    return;
-                }
-            }
-            else {
-            }
-        }
+        //if (RELEASE) {
+        //    if (egret.Capabilities.runtimeType == egret.RuntimeType.WEB) {
+        //        if (!egret.Capabilities.isMobile){
+        //            alert("发布版只能在手机上看，请发布后删除这句话");
+        //            return;
+        //        };
+        //        var url = location.href;
+        //        if (url.indexOf("2.168.") != -1
+        //            || url.indexOf("ocalho") > -1
+        //            || url.indexOf("yaer") == -1) {
+        //            alert("发布版不支持本地预览，请发布后删除这句话");
+        //            return;
+        //        }
+        //    } else { //Native check package name
+        //        //TODO native package name
+        //    }
+        //}
         //inject the custom material parser
         //注入自定义的素材解析器
         var assetAdapter = new AssetAdapter();

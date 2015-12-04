@@ -39,16 +39,16 @@ e.buildCost = function (need, startLevel, count) {
         var num = 0;
         for (var j = 0; j < 5; j++) {
             if (num < count) {
-                var phaseLV = Math.ceil((endLv + 1) / 200);
-                var costNum = need[i].par1 * phaseLV * phaseLV + need[i].par2 * phaseLV + need[i].par3;
+                var phase200 = Math.ceil((endLv + 1) / 200);
+                var costNum = need[i].par1 * phase200 * phase200 + need[i].par2 * phase200 + need[i].par3;
                 if (costNum > 100) {
                     (costNum -= costNum % 100);
                 }
-                phaseLV = Math.min(200 * phaseLV, startLevel + count) - endLv;
-                canLvArr[i] += phaseLV;
-                costArr[i] += phaseLV * costNum;
-                endLv += phaseLV;
-                num += phaseLV
+                phase200 = Math.min(200 * phase200, startLevel + count) - endLv;
+                canLvArr[i] += phase200;
+                costArr[i] += phase200 * costNum;
+                endLv += phase200;
+                num += phase200
             }
         }
     }

@@ -68,37 +68,3 @@ class BuildingVo {
         return costArr;
     }
 }
-
-
-/**
- * 建筑里的消耗
- * [{"prop":104,"par1":400,"par2":-200,"par3":0},{"prop":105,"par1":400,"par2":-200,"par3":0}]
- */
-class BuildingCostVo {
-    /**资源id**/
-    propId:number;
-    private par1:number;
-    private par2:number;
-    private par3:number;
-    /**
-     * 建筑你类型
-     */
-    private buildType:number;
-
-    public constructor(obj, type) {
-        this.buildType = type;
-        this.propId = obj["prop"];
-        this.par1 = obj["par1"];
-        this.par2 = obj["par2"];
-        this.par3 = obj["par3"];
-    }
-
-    public getCount(level?:number):number {
-        //TODO 根据公式计算需要材料的数量
-        if (!level) {
-            level = Player.instance.vo.building.get(this.buildType, 0);
-        }
-
-        return 1;
-    }
-}

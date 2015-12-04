@@ -5,11 +5,6 @@ class BuildItemBase extends eui.ItemRenderer {
      * @type {boolean}
      */
     protected fixedMax:boolean = false;
-    /**
-     * 建造最大值
-     * @type {number}
-     */
-    protected buildMax:number = 1;
 
     public constructor(type) {
         super();
@@ -79,16 +74,6 @@ class BuildItemBase extends eui.ItemRenderer {
     }
 
     /**
-     * 更新建造最大值（需要重新,跟个类型的逻辑不同）
-     * @param max
-     */
-    public updateBuildMax(max:number) {
-        this.buildMax = max;
-
-        this.updateBuildNumber();
-    }
-
-    /**
      * 当资源有变化当时候 （需要重写）
      */
     protected onResourceChange(e:egret.Event){
@@ -98,7 +83,7 @@ class BuildItemBase extends eui.ItemRenderer {
     /**
      * 更新可以建筑的等级次数（需要重写）
      */
-    protected updateBuildNumber() {
+    public updateBuildNumber() {
 
     }
 }
