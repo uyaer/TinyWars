@@ -1,3 +1,5 @@
 .idea/
 libs/modules/
 bin-debug/
+bin-release/
+.idea/workspace.xml
