@@ -122,11 +122,13 @@ class Player {
     public addResourceCount(type:number, num:number, force:boolean = false) {
         var count:number = this._vo.resource.get(type, 0);
         var max:number = this.resourceCapacity.get(type);
-        if (count < max || num < 0 || force) {
+        //如果是减少或者是合成材料，就不会判断最大值
+        var isCom:boolean = Util.isElinArr(type, ResCategory.complexGroup);
+        if (count < max || num < 0 || force || isCom) {
             if (force) {
                 this._vo.resource.set(type, count + num);
             } else {
-                if (num < 0) {
+                if (num < 0 || isCom) {
                     this._vo.resource.set(type, count + num);
                 } else {
                     this._vo.resource.set(type, Math.min(count + num, max));
@@ -150,8 +152,10 @@ class Player {
             var num = numArr[i];
             var max:number = this.resourceCapacity.get(type);
             var count:number = this._vo.resource.get(type, 0);
-            if (count < max || num < 0) {
-                if (num < 0) {
+            //如果是减少或者是合成材料，就不会判断最大值
+            var isCom:boolean = Util.isElinArr(type, ResCategory.complexGroup);
+            if (count < max || num < 0 || isCom) {
+                if (num < 0 || isCom) {
                     this._vo.resource.set(type, count + num);
                 } else {
                     this._vo.resource.set(type, Math.min(count + num, max));
@@ -206,16 +210,16 @@ class Player {
         var addRateIds:number[] = [];
         var addResValues:number[] = [];
         for (var i = 0; i < addRateKeys.length; i++) {
-            var resId = addRateKeys[i];
+            var resId:number = int(addRateKeys[i]);
             var num:number = this.resourceAddRate.get(resId);
             //如果是工厂的话，需要判断工厂是否开工了
-            if (Util.isElinArr(resId, BuildingCategory.factoryGroup)) {
+            if (Util.isElinArr(resId, ResCategory.complexGroup)) {
                 var bvo:BuildingVo = BuildingDataManager.instance.getFactoryOutputNumberByResourceId(resId);
                 num = bvo.factoryCacheOutputNumber;
                 if (bvo.factoryCacheOutputNumber > 0) { //工厂能生产，需要扣除原料
                     for (var j = 0; j < bvo.costBaseResIdArr.length; j++) {
                         addRateIds.push(bvo.costBaseResIdArr[j]);
-                        addResValues.push(num * bvo.rate);
+                        addResValues.push(-num * bvo.rate);
                     }
                 }
             }

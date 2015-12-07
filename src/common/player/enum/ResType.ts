@@ -36,4 +36,18 @@ class ResType {
     static CRYSTAL:number = 109;
     /****神石****/
     static GEM:number = 110;
+
+}
+
+class ResCategory {
+    /**
+     * 基础资源
+     * @type {any[]}
+     */
+    static baseGroup:number[] = [ResType.FOOD, ResType.WOOD, ResType.STONE];
+    /**
+     * 合成资源
+     * @type {any[]}
+     */
+    static complexGroup:number[] = [ResType.METAL, ResType.FUR, ResType.HORSE, ResType.CRYSTAL];
 }

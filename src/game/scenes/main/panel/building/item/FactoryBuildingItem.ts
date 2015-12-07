@@ -19,12 +19,11 @@ class FactoryBuildingItem extends BuildingItemBase {
         //开放状态
         this.openBtn.selected = Player.instance.vo.factory.get(this.type, false);
 
-        this.openBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpenBarClick, this);
+        this.openBtn.addEventListener(egret.Event.CHANGE, this.onOpenBarClick, this);
     }
 
     private onOpenBarClick() {
-        var flag:boolean = !this.openBtn.selected;
-        this.openBtn.selected = flag;
+        var flag:boolean = this.openBtn.selected;
         Player.instance.changeFactoryOpenState(this.type, flag);
     }
 }
