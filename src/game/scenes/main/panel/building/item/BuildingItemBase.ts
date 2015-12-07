@@ -20,7 +20,6 @@ class BuildingItemBase extends BuildItemBase {
         this.icon.source = "building_icon_" + this.type + "_png";
         this.nameTF.text = this.vo.name;
         this.descTF.text = this.vo.desc;
-        this.lvTF.text = "Lv." + Player.instance.vo.building.get(this.type, 0);
 
         //cost
         this.costItemArr = [];
@@ -34,6 +33,12 @@ class BuildingItemBase extends BuildItemBase {
             this.costGroup.addChild(item);
             this.costItemArr.push(item);
         }
+
+        //查询是否有建造队列
+        var qvo:BuildQueueVo = Player.instance.getBuildQueue(GameModule.BUILDING, this.type);
+        if (qvo && qvo.needTime > 1000) { //存在建造队列,并且
+            this.addBuildProgress(qvo);
+        }
     }
 
     /**
@@ -43,9 +48,14 @@ class BuildingItemBase extends BuildItemBase {
         //建造数量
         var maxNum:number = BuildingDataManager.instance.buildingCanUpLevel.get(this.type, 1);
         var cd = this.vo.cd_time * maxNum * 1000;
-        Player.instance.addBuidQueue(GameModule.BUILDING, this.vo.id, cd, maxNum, maxNum > 1);
-        if (maxNum > 1) {
+        var qvo:BuildQueueVo = Player.instance.addBuidQueue(GameModule.BUILDING, this.vo.id, cd, maxNum, maxNum > 1);
+        if (maxNum > 1 && qvo) {
             //TODO 建筑按钮状态
+
+            this.updateBuildNumber();
+            this.addBuildProgress(qvo);
+        } else {
+            this.updateView();
         }
 
         //扣除资源
@@ -83,12 +93,21 @@ class BuildingItemBase extends BuildItemBase {
 
         //cost item
         if (this.costItemArr) {
+            var left:number = 0;
             for (var i = 0; i < this.vo.cost.length; i++) {
                 var cvo:BuildingCostVo = this.vo.cost[i];
                 var item = this.costItemArr[i];
                 item.updateView(cvo.cacheCostCount);
+                item.x = left;
+                left += item.width + 10;
             }
         }
+    }
+
+    protected updateView() {
+        super.updateView();
+
+        this.lvTF.text = "Lv." + Player.instance.vo.building.get(this.type, 0);
     }
 
 }

@@ -62,6 +62,27 @@ class Util {
     }
 
     /**
+     * 时间格式化
+     * @param num (毫秒)
+     * @returns {string}
+     */
+    static getBigTimeShow(num:number):string {
+        var s = Math.round(num / 1000);
+        if (s > 3600) {
+            var h = int(s / 3600);
+            s = s % 3600;
+            var m = Math.round(s / 60);
+            return h + "H" + m + "M";
+        } else if (s > 60) {
+            var m = int(s / 60);
+            s = s % 60;
+            return m + "M" + s + "S";
+        } else {
+            return s + "S";
+        }
+    }
+
+    /**
      * 元素是否包含在Array里
      * @param el
      * @param arr

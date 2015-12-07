@@ -12,9 +12,6 @@ class FactoryBuildingItem extends BuildingItemBase {
         super.createChildren();
 
         this.effectDescTF.text = this.vo.eff_desc;
-        var num:number = Player.instance.vo.building.get(this.type, 0) * this.vo.value;
-        //TODO 有加成的哦
-        this.effectTF.text = Util.getBigNumberShow(num) + "/s";
 
         //开放状态
         this.openBtn.selected = Player.instance.vo.factory.get(this.type, false);
@@ -25,5 +22,15 @@ class FactoryBuildingItem extends BuildingItemBase {
     private onOpenBarClick() {
         var flag:boolean = this.openBtn.selected;
         Player.instance.changeFactoryOpenState(this.type, flag);
+    }
+
+    /**
+     * @override
+     */
+    protected updateView(){
+        super.updateView();
+
+        var num:number = Player.instance.getResourceAddRate(this.vo.pValueId);
+        this.effectTF.text = num + "/s";
     }
 }

@@ -7,8 +7,16 @@ class ResBuildingItem extends BuildingItemBase {
 
     protected createChildren() {
         super.createChildren();
-        var num:number = Player.instance.vo.building.get(this.type, 0) * this.vo.value;
-        //TODO 有加成的哦
-        this.effectTF.text = Util.getBigNumberShow(num) + "/s";
+
+    }
+
+    /**
+     * @override
+     */
+    protected updateView(){
+        super.updateView();
+
+        var num:number = Player.instance.getResourceAddRate(this.vo.pValueId);
+        this.effectTF.text = num + "/s";
     }
 }

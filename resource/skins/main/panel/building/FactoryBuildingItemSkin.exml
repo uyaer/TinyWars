@@ -14,10 +14,10 @@
 	<e:ToggleButton id="openBtn" label="切换按钮" x="12" verticalCenter="0.5">
 		<e:skinName>
 			<e:Skin states="up,down,disabled,upAndSelected,downAndSelected,disabledAndSelected">
-				<e:Image width="100%" height="100%" source="factory_bar_on_png" 
-				         source.upAndSelected="factory_bar_off_png" 
-				         source.downAndSelected="factory_bar_off_png" 
-				         source.disabledAndSelected="factory_bar_off_png" 
+				<e:Image width="100%" height="100%" source="factory_bar_off_png" 
+				         source.upAndSelected="factory_bar_on_png" 
+				         source.downAndSelected="factory_bar_on_png" 
+				         source.disabledAndSelected="factory_bar_on_png" 
 				         />
 			</e:Skin>
 		</e:skinName>

@@ -39,4 +39,28 @@ class BuildQueueVo {
             this.value = value;
         }
     }
+
+    /**
+     * 获取总共需要的时间
+     * @returns {number}
+     */
+    public get totalTime() {
+        return this.endTime - this.startTime;
+    }
+
+    /**
+     *  过去的时间
+     * @returns {number}
+     */
+    public get pastTime() {
+        return DateTimer.instance.now - this.startTime;
+    }
+
+    /**
+     * 剩余的时间
+     * @returns {number}
+     */
+    public get needTime() {
+        return this.endTime - DateTimer.instance.now;
+    }
 }

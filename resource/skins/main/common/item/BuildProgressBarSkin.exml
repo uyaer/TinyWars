@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="BuildProgressBarSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="325"
+	         verticalCenter="0" source="build_pro_bg_png" scale9Grid="6,4,1,2" height="10"/>
+	<e:Image id="thumb" width="100%" source="build_pro_bar_png" scale9Grid="5,5,1,2" verticalCenter="-0.5"/>
+	<e:Group id="smartSp" width="20" height="20" y="25" horizontalCenter="-1">
+		<e:Image source="build_smart_png" x="-65" y="-50"/>
+	</e:Group>
+</e:Skin>

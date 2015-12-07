@@ -138,7 +138,7 @@
 	},
 	{
 		"name":"common_json",
-		"subkeys":"btn_building_gray_png,btn_building_png,btn_yellow_png,item_bg_png,loading_panel_png,loading_scene_logo_png,menu_bg_png,menu_build_png,menu_dinfo_png,menu_ef_png,menu_food_png,menu_setting_png,menu_shop_png,menu_technology_png,menu_union_png,menu_war_png,res_icon_101_png,res_icon_102_png,res_icon_103_png,res_icon_104_png,res_icon_105_png,res_icon_106_png,res_icon_107_png,res_icon_108_png,res_icon_109_png,res_icon_110_png,tab1_png,tab1_select_png,tab2_png,tab2_select_png,top_input_png",
+		"subkeys":"btn_building_gray_png,btn_building_png,btn_yellow_png,build_pro_bar_png,build_pro_bg_png,build_smart_png,item_bg_png,loading_panel_png,loading_scene_logo_png,menu_bg_png,menu_build_png,menu_dinfo_png,menu_ef_png,menu_food_png,menu_setting_png,menu_shop_png,menu_technology_png,menu_union_png,menu_war_png,res_icon_101_png,res_icon_102_png,res_icon_103_png,res_icon_104_png,res_icon_105_png,res_icon_106_png,res_icon_107_png,res_icon_108_png,res_icon_109_png,res_icon_110_png,tab1_png,tab1_select_png,tab2_png,tab2_select_png,top_input_png",
 		"type":"sheet",
 		"url":"assets/common/ui/common.json"
 	},

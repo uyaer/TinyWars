@@ -273,13 +273,15 @@ var Player = (function () {
         if (needPush === void 0) { needPush = true; }
         var startTime = DateTimer.instance.now;
         var endTime = startTime + cd;
-        var vo = new BuildQueueVo(module, id, startTime, endTime, value);
+        var qvo = new BuildQueueVo(module, id, startTime, endTime, value);
         if (cd > 1000 && needPush) {
-            this.vo.buildQueue.push(vo);
+            this.vo.buildQueue.push(qvo);
             this.saveToNet();
+            return qvo;
         }
         else {
-            this.onBuildQueueComplete(vo);
+            this.onBuildQueueComplete(qvo);
+            return null;
         }
     };
     /**

@@ -56,7 +56,18 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
      * 更新 (需要重新)
      */
     public update() {
-
+        //更新建造进度条
+        if (this.progressBar) {
+            var time = DateTimer.instance.now - this.buildQueueVo.startTime;
+            this.progressBar.value = time;
+            if (DateTimer.instance.now >= this.buildQueueVo.endTime) {
+                UIUtils.removeSelf(this.progressBar);
+                this.costGroup.visible = true;
+                this.progressBar = null;
+                this.buildQueueVo = null;
+                this.updateView();
+            }
+        }
     }
 
     protected icon:eui.Image;
@@ -66,6 +77,8 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
     protected lvTF:eui.Label;
     protected costGroup:eui.Group;
     protected buildBtn:eui.Button;
+    protected progressBar:BuildProgressBar;
+    protected buildQueueVo:BuildQueueVo;
 
     protected createChildren() {
         super.createChildren();
@@ -75,6 +88,8 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
         if (!this.fixedMax) {
             this.updateBuildNumber();
         }
+
+        this.updateView();
 
         this.buildBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,
             this.onBuildClick, this);
@@ -96,5 +111,25 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
      */
     public updateBuildNumber() {
 
+    }
+
+    /**
+     * 更新特有的视图 (不同模块需要重写)
+     */
+    protected updateView(){
+
+    }
+
+    /**
+     * 更新建造状态 (需要重写)
+     */
+    protected addBuildProgress(vo:BuildQueueVo) {
+        this.buildQueueVo = vo;
+        this.progressBar = new BuildProgressBar(vo.totalTime);
+        this.progressBar.value = vo.pastTime;
+        this.progressBar.x = this.costGroup.x;
+        this.progressBar.y = this.costGroup.y - 8;
+        this.addChild(this.progressBar);
+        this.costGroup.visible = false;
     }
 }

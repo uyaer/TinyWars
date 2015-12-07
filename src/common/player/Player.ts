@@ -289,16 +289,18 @@ class Player {
      * @param value
      * @param needPush 是否需要入栈
      */
-    public addBuidQueue(module:number, id:number, cd:number, value:number, needPush:boolean = true):void {
+    public addBuidQueue(module:number, id:number, cd:number, value:number, needPush:boolean = true):BuildQueueVo {
         var startTime:number = DateTimer.instance.now;
         var endTime:number = startTime + cd;
-        var vo:BuildQueueVo = new BuildQueueVo(module, id, startTime, endTime, value);
+        var qvo:BuildQueueVo = new BuildQueueVo(module, id, startTime, endTime, value);
 
         if (cd > 1000 && needPush) {
-            this.vo.buildQueue.push(vo);
+            this.vo.buildQueue.push(qvo);
             this.saveToNet();
+            return qvo;
         } else {
-            this.onBuildQueueComplete(vo);
+            this.onBuildQueueComplete(qvo);
+            return null;
         }
     }
 
