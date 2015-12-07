@@ -46,6 +46,10 @@ class DateTimer {
     }
 
     /**
+     * ========================== 网络动画同步 ========================
+     */
+
+    /**
      * 启动同步数据的计时器
      */
     private runSyncTicker() {
@@ -53,6 +57,15 @@ class DateTimer {
         timer.addEventListener(egret.TimerEvent.TIMER, this.onSyncTimer, this);
         timer.start();
     }
+
+    private onSyncTimer() {
+        Player.instance.saveToNet();
+    }
+
+    /**
+     * ========================== 1s动画 ========================
+     */
+
 
     /**
      * 启动1s计时器
@@ -63,14 +76,15 @@ class DateTimer {
         timer.start();
     }
 
-    private onSyncTimer() {
-        Player.instance.saveToNet();
-    }
 
     private onOneSecondTimer() {
         //刷新建筑cd
         Player.instance.updateBuildQueue();
         //自动产出资源
         Player.instance.autoOutputResource();
+
+        //1s定时器更新
+        OneTimerTicker.instance.update();
     }
+
 }
