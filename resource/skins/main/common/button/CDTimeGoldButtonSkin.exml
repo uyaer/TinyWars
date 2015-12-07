@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="CDTimeGoldButtonSkin" states="up,down,disabled" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="90" height="78" scale9Grid="1,3,8,8" alpha.disabled="0.5"
+	        
+	         source.down="button_down_png" source="btn_yellow_png"/>
+	<e:Rect height="24" y="46" right="0" left="0" fillAlpha="0.5"/>
+	<e:Label id="cdTimeTF" text="20M35S" y="47" size="20" horizontalCenter="0" textAlign="center"/>
+	<e:Image source="res_icon_101_png" x="47" y="6"/>
+	<e:Label id="goldTF" text="999" y="16" size="22" textAlign="center" horizontalCenter="-18" textColor="0xFFFF22"/>
+	</e:Skin>

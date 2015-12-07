@@ -257,6 +257,8 @@ class Player {
             this.calStoreCapacity();
         } else if (Util.isElinArr(id, BuildingCategory.factoryGroup)) { //工厂变化，工厂产能变化
             this.calResourceAddRate();
+        }else if (Util.isElinArr(id, BuildingCategory.warGroup)) { //军事变化，士兵上限进行变化
+            this.calStoreCapacity();
         }
     }
 

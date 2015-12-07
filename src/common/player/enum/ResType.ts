@@ -36,6 +36,14 @@ class ResType {
     static CRYSTAL:number = 109;
     /****神石****/
     static GEM:number = 110;
+    /****战士****/
+    static ARMY_SWORD:number = 111;
+    /****弓箭手****/
+    static ARMY_ARCHER:number = 112;
+    /****骑士****/
+    static ARMY_KING:number = 113;
+    /****龙****/
+    static ARMY_DRAGON:number = 114;
 
 }
 
@@ -50,4 +58,9 @@ class ResCategory {
      * @type {any[]}
      */
     static complexGroup:number[] = [ResType.METAL, ResType.FUR, ResType.HORSE, ResType.CRYSTAL];
+    /**
+     * 士兵资源
+     * @type {any[]}
+     */
+    static armyGroup:number[] = [ResType.ARMY_SWORD, ResType.ARMY_ARCHER, ResType.ARMY_KING, ResType.ARMY_DRAGON];
 }

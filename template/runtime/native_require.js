@@ -53,6 +53,7 @@ var game_file_list = [
 	"bin-debug/common/utils/update/OneTimerTicker.js",
 	"bin-debug/game/scenes/login/LoginScene.js",
 	"bin-debug/game/scenes/main/MainScene.js",
+	"bin-debug/game/scenes/main/common/button/CDTimeGoldButton.js",
 	"bin-debug/game/scenes/main/common/button/SimpleTabItemButton.js",
 	"bin-debug/game/scenes/main/common/button/WrapTabItemButton.js",
 	"bin-debug/game/scenes/main/common/item/BuildProgressBar.js",

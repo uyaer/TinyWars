@@ -242,6 +242,9 @@ var Player = (function () {
         else if (Util.isElinArr(id, BuildingCategory.factoryGroup)) {
             this.calResourceAddRate();
         }
+        else if (Util.isElinArr(id, BuildingCategory.warGroup)) {
+            this.calStoreCapacity();
+        }
     };
     /**
      * ============================== 建筑队列 ===============================

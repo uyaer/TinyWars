@@ -58,13 +58,17 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
     public update() {
         //更新建造进度条
         if (this.progressBar) {
-            var time = DateTimer.instance.now - this.buildQueueVo.startTime;
+            var time = this.buildQueueVo.pastTime;
             this.progressBar.value = time;
+            this.buildLockBtn.updateView(this.buildQueueVo.needTime);
             if (DateTimer.instance.now >= this.buildQueueVo.endTime) {
                 UIUtils.removeSelf(this.progressBar);
                 this.costGroup.visible = true;
                 this.progressBar = null;
                 this.buildQueueVo = null;
+                UIUtils.removeSelf(this.buildLockBtn);
+                this.buildBtn.visible = true;
+                this.buildLockBtn = null;
                 this.updateView();
             }
         }
@@ -77,6 +81,7 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
     protected lvTF:eui.Label;
     protected costGroup:eui.Group;
     protected buildBtn:eui.Button;
+    protected buildLockBtn:CDTimeGoldButton;
     protected progressBar:BuildProgressBar;
     protected buildQueueVo:BuildQueueVo;
 
@@ -116,7 +121,7 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
     /**
      * 更新特有的视图 (不同模块需要重写)
      */
-    protected updateView(){
+    protected updateView() {
 
     }
 
@@ -124,12 +129,23 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
      * 更新建造状态 (需要重写)
      */
     protected addBuildProgress(vo:BuildQueueVo) {
-        this.buildQueueVo = vo;
-        this.progressBar = new BuildProgressBar(vo.totalTime);
-        this.progressBar.value = vo.pastTime;
-        this.progressBar.x = this.costGroup.x;
-        this.progressBar.y = this.costGroup.y - 8;
-        this.addChild(this.progressBar);
-        this.costGroup.visible = false;
+        egret.callLater(()=> {
+            this.buildQueueVo = vo;
+            this.progressBar = new BuildProgressBar(vo.totalTime);
+            this.progressBar.value = vo.pastTime;
+            this.progressBar.x = this.costGroup.x;
+            this.progressBar.y = this.costGroup.y - 8;
+            this.addChild(this.progressBar);
+            this.costGroup.visible = false;
+
+            //按钮
+            this.buildLockBtn = new CDTimeGoldButton();
+            this.buildLockBtn.x = this.buildBtn.x;
+            this.buildLockBtn.y = this.buildBtn.y;
+            this.addChild(this.buildLockBtn);
+            this.buildLockBtn.updateView(vo.needTime);
+            this.buildBtn.visible = false;
+        }, this);
+
     }
 }

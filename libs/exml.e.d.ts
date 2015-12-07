@@ -58,6 +58,8 @@ declare class MainSceneSkin extends eui.Skin{
 }
 declare class BuildingButtonSkin extends eui.Skin{
 }
+declare class CDTimeGoldButtonSkin extends eui.Skin{
+}
 declare class MenuButtonSkin extends eui.Skin{
 }
 declare class NumberTabItemButtonSkin extends eui.Skin{

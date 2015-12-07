@@ -33,6 +33,7 @@
     "resource/skins/main/common/button/MenuButtonSkin.exml",
     "resource/skins/main/MainSceneSkin.exml",
     "resource/skins/main/common/button/BuildingButtonSkin.exml",
+    "resource/skins/main/common/button/CDTimeGoldButtonSkin.exml",
     "resource/skins/main/common/button/NumberTabItemButtonSkin.exml",
     "resource/skins/main/common/button/TypeTabItemButtonSkin.exml",
     "resource/skins/main/common/item/BuildProgressBarSkin.exml",

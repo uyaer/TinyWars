@@ -114,6 +114,7 @@ class BuildingDataManager {
                 (minLv = canUpLvArr[i]);
             }
         }
+        minLv = Math.min(minLv,maxUpCount);
         if (99999 == minLv || 0 == minLv) {
             minLv = 1;
             isCanBuilding = false;
