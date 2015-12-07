@@ -1,4 +1,4 @@
-class BuildItemBase extends eui.ItemRenderer {
+class BuildItemBase extends eui.ItemRenderer implements IUpdate {
     protected type:number;
     /**
      * 建造最大值是否是固定的
@@ -25,6 +25,8 @@ class BuildItemBase extends eui.ItemRenderer {
             EventManager.instance.addEvent(EventName.RESOURCE_CHANGE,
                 this.onResourceChange, this);
         }
+
+        OneTimerTicker.instance.add(this);
     }
 
     /**
@@ -38,13 +40,22 @@ class BuildItemBase extends eui.ItemRenderer {
         }
         UIUtils.removeButtonScaleEffects(this);
 
+        OneTimerTicker.instance.remove(this);
+
         this.destroy();
     }
 
     /**
-     * 销毁
+     * 销毁 (需要重新自己的逻辑)
      */
     protected destroy() {
+
+    }
+
+    /**
+     * 更新 (需要重新)
+     */
+    public update() {
 
     }
 
@@ -61,7 +72,7 @@ class BuildItemBase extends eui.ItemRenderer {
 
         UIUtils.addButtonScaleEffects(this);
 
-        if(!this.fixedMax){
+        if (!this.fixedMax) {
             this.updateBuildNumber();
         }
 
@@ -76,7 +87,7 @@ class BuildItemBase extends eui.ItemRenderer {
     /**
      * 当资源有变化当时候 （需要重写）
      */
-    protected onResourceChange(e:egret.Event){
+    protected onResourceChange(e:egret.Event) {
 
     }
 

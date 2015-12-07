@@ -11,7 +11,9 @@ class BuildingItemBase extends BuildItemBase {
         this.vo = BuildingDataManager.instance.buildingDataBaseMap.get(type);
     }
 
-
+    /**
+     * @override
+     */
     protected createChildren() {
         super.createChildren();
 
@@ -34,6 +36,9 @@ class BuildingItemBase extends BuildItemBase {
         }
     }
 
+    /**
+     * @override
+     */
     protected onBuildClick() {
         //建造数量
         var maxNum:number = BuildingDataManager.instance.buildingCanUpLevel.get(this.type, 1);
@@ -49,6 +54,7 @@ class BuildingItemBase extends BuildItemBase {
 
     /**
      * 当资源有变化当时候
+     * @override
      */
     protected onResourceChange(e:egret.Event) {
         var types:number[] = e.data;
@@ -63,6 +69,7 @@ class BuildingItemBase extends BuildItemBase {
 
     /**
      * 更新可以建筑的等级次数
+     * @override
      */
     public updateBuildNumber() {
         if (this.fixedMax)return;
