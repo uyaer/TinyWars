@@ -56,7 +56,7 @@ class Util {
         if (num < 10000) {
             return num + "";
         } else {
-            num /= 10000;
+            num /= 1000;
             return num.toFixed(1) + "K";
         }
     }

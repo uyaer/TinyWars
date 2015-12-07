@@ -23,7 +23,7 @@ var DateTimer = (function () {
         }
     );
     /**
-     * 同步服务器时间
+     * TODO 同步服务器时间
      * @param val
      */
     p.updateServerTime = function (val) {
@@ -37,6 +37,11 @@ var DateTimer = (function () {
             return Date.now() - this._deltaTime;
         }
     );
+    p.run = function () {
+        //TODO 网络同步
+        //this.runSyncTicker();
+        this.run1sTicker();
+    };
     /**
      * 启动同步数据的计时器
      */
@@ -45,8 +50,22 @@ var DateTimer = (function () {
         timer.addEventListener(egret.TimerEvent.TIMER, this.onSyncTimer, this);
         timer.start();
     };
+    /**
+     * 启动1s计时器
+     */
+    p.run1sTicker = function () {
+        var timer = new egret.Timer(1000);
+        timer.addEventListener(egret.TimerEvent.TIMER, this.onOneSecondTimer, this);
+        timer.start();
+    };
     p.onSyncTimer = function () {
         Player.instance.saveToNet();
+    };
+    p.onOneSecondTimer = function () {
+        //刷新建筑cd
+        Player.instance.updateBuildQueue();
+        //自动产出资源
+        Player.instance.autoOutputResource();
     };
     return DateTimer;
 })();

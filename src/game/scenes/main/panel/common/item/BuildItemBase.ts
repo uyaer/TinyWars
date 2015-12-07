@@ -69,7 +69,7 @@ class BuildItemBase extends eui.ItemRenderer {
             this.onBuildClick, this);
     }
 
-    private onBuildClick() {
+    protected onBuildClick() {
 
     }
 

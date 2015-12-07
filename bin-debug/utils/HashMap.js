@@ -28,6 +28,17 @@ var HashMap = (function () {
             }
         }
     };
+    /**
+     * 追加，但是V必须是number的时候才有效
+     * @param K
+     * @param V {number}
+     */
+    p.add = function (K, V) {
+        if (isNumber(V)) {
+            var num = this.get(K, 0) + V;
+            this.put(K, num);
+        }
+    };
     p.has = function (K) {
         return this.data.hasOwnProperty(K);
     };

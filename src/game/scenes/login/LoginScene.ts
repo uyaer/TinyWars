@@ -20,8 +20,8 @@ class LoginScene extends SceneBase {
                     Player.instance.dealLoginSuccess(JSON.parse(dataStr));
                 }
 
-                ///TODO 数据同步计时器启动
-                //DateTimer.instance.runSyncTicker();
+                /// 数据同步计时器启动
+                DateTimer.instance.run();
 
                 //转换场景
                 SceneLoading.instance.load("main", MainScene);

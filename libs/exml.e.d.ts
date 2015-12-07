@@ -54,8 +54,6 @@ declare class SceneLoadingSkin extends eui.Skin{
 }
 declare class LoginSceneSkin extends eui.Skin{
 }
-declare class MainSceneSkin extends eui.Skin{
-}
 declare class BuildingButtonSkin extends eui.Skin{
 }
 declare class MenuButtonSkin extends eui.Skin{
@@ -71,6 +69,8 @@ declare class FirstResItemSkin extends eui.Skin{
 declare class SecondResItemSkin extends eui.Skin{
 }
 declare class ThirdResItemSkin extends eui.Skin{
+}
+declare class MainSceneSkin extends eui.Skin{
 }
 declare class FactoryBuildingItemSkin extends eui.Skin{
 }

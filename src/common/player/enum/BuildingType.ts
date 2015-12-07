@@ -1,4 +1,3 @@
-
 /**
  * 资源建筑
  */
@@ -102,4 +101,20 @@ class BuildingCategory {
     static factoryGroup:number[] = [BuildingType.FACTORY_METAL, BuildingType.FACTORY_FUR, BuildingType.FACTORY_HORSE, BuildingType.FACTORY_CRYSTAL];
     static storeGroup:number[] = [BuildingType.STORE_FOOD, BuildingType.STORE_WOOD, BuildingType.STORE_STONE];
     static warGroup:number[] = [BuildingType.WAR_SWORD, BuildingType.WAR_ARCHER, BuildingType.WAR_KNIGHT, BuildingType.WAR_DRAGON];
+}
+
+/**
+ * 建筑产出类型
+ */
+class BuildingProduct {
+    /**
+     * 产出资源
+     * @type {number}
+     */
+    static PRODUCT:number = 1;
+    /**
+     * 产出 仓库
+     * @type {number}
+     */
+    static STORE:number = 2;
 }

@@ -2,9 +2,9 @@ class MainScene extends SceneBase {
     public constructor() {
         super();
 
-        this.skinName = new MainSceneSkin();
-
         this.initCommonConfig();
+
+        this.skinName = new MainSceneSkin();
     }
 
     /**
@@ -14,6 +14,9 @@ class MainScene extends SceneBase {
         var data = RES.getRes("data_json");
         //建筑数据
         BuildingDataManager.instance.init(data["building"]);
+
+
+        Player.instance.init();
     }
 
     private btnHome:eui.Button;
@@ -95,8 +98,7 @@ class MainScene extends SceneBase {
      * 添加资源更新事件
      */
     private initUpdateEvent() {
-        EventManager.instance.addEvent(EventName.RESOURCE_CHANGE,
-            this.onResourceUpdate, this);
+        EventManager.instance.addEvent(EventName.RESOURCE_CHANGE, this.onResourceUpdate, this);
     }
 
     /**

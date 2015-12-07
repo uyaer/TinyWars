@@ -7,6 +7,8 @@ class UserVo {
     public resource:HashMap<number,number> = new HashMap<number,number>();
     /****** 建筑 *******/
     public building:HashMap<number,number> = new HashMap<number,number>();
+    /****** 建筑队列 *******/
+    public buildQueue:BuildQueueVo[] = [];
 
 
 }

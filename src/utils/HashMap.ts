@@ -27,6 +27,18 @@ class HashMap<K,V> {
         }
     }
 
+    /**
+     * 追加，但是V必须是number的时候才有效
+     * @param K
+     * @param V {number}
+     */
+    public add(K, V):void {
+        if (isNumber(V)) {
+            var num = this.get(K, 0) + V;
+            this.put(K, num);
+        }
+    }
+
     public has(K):boolean {
         return this.data.hasOwnProperty(K);
     }

@@ -25,7 +25,7 @@ class DateTimer {
     private _deltaTime:number = 0;
 
     /**
-     * 同步服务器时间
+     * TODO 同步服务器时间
      * @param val
      */
     public updateServerTime(val:number) {
@@ -39,16 +39,38 @@ class DateTimer {
         return Date.now() - this._deltaTime;
     }
 
+    public run() {
+        //TODO 网络同步
+        //this.runSyncTicker();
+        this.run1sTicker();
+    }
+
     /**
      * 启动同步数据的计时器
      */
-    public runSyncTicker() {
+    private runSyncTicker() {
         var timer:egret.Timer = new egret.Timer(15000);
         timer.addEventListener(egret.TimerEvent.TIMER, this.onSyncTimer, this);
         timer.start();
     }
 
+    /**
+     * 启动1s计时器
+     */
+    private run1sTicker() {
+        var timer:egret.Timer = new egret.Timer(1000);
+        timer.addEventListener(egret.TimerEvent.TIMER, this.onOneSecondTimer, this);
+        timer.start();
+    }
+
     private onSyncTimer() {
         Player.instance.saveToNet();
+    }
+
+    private onOneSecondTimer() {
+        //刷新建筑cd
+        Player.instance.updateBuildQueue();
+        //自动产出资源
+        Player.instance.autoOutputResource();
     }
 }

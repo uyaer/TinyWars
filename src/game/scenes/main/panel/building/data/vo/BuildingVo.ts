@@ -16,6 +16,14 @@ class BuildingVo {
      */
     stype:number;
     /**
+     * 产出类型
+     */
+    ptype:number;
+    /**
+     * 产出效果值
+     */
+    pValueId:number;
+    /**
      * 效果值
      */
     value:number;
@@ -49,6 +57,8 @@ class BuildingVo {
         this.name = obj["name"];
         this.desc = obj["desc"];
         this.stype = obj["stype"];
+        this.ptype = obj["ptype"];
+        this.pValueId = obj["pValueId"];
         this.value = obj["value"];
         this.cost = this.getCost(obj["cost"]);
         this.cd_time = obj["cd_time"];
@@ -66,5 +76,13 @@ class BuildingVo {
             this.costIdArr.push(vo.propId);
         }
         return costArr;
+    }
+
+    public get costCacheValue():number[] {
+        var arr = [];
+        for (var i = 0; i < this.cost.length; i++) {
+            arr.push(-this.cost[i].cacheCostCount);
+        }
+        return arr;
     }
 }

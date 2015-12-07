@@ -8,7 +8,7 @@ class ResItemBase extends eui.Component {
     }
 
     private icon:eui.Image;
-    private numTF:eui.Label;
+    protected numTF:eui.Label;
     private nameTF:eui.Label;
 
     protected createChildren() {
@@ -22,6 +22,6 @@ class ResItemBase extends eui.Component {
 
     public update() {
         var num = Player.instance.getResourceCount(this.resType);
-        this.numTF.text = num + "";
+        this.numTF.text = Util.getBigNumberShow(num);
     }
 }
