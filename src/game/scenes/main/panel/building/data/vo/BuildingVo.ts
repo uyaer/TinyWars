@@ -51,6 +51,14 @@ class BuildingVo {
      * 消耗道具id的数组
      */
     costIdArr:number[];
+    /**
+     * 工厂需要的原材料
+     */
+    costBaseResIdArr:number[];
+    /**
+     * 如果是工厂，缓存的工厂产出数量
+     */
+    factoryCacheOutputNumber:number;
 
     public constructor(obj) {
         this.id = obj["id"];
@@ -65,6 +73,17 @@ class BuildingVo {
         this.exp = obj["exp"];
         this.rate = obj["rate"];
         this.eff_desc = obj["eff_desc"];
+        if (this.stype == BuildingCategory.FACTORY) {
+            this.getCostBaseRes(obj["costBaseRes"]);
+        }
+    }
+
+    private getCostBaseRes(str:string):void {
+        var arr = str.split("|");
+        this.costBaseResIdArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            this.costBaseResIdArr.push(int(arr[i]));
+        }
     }
 
     private getCost(arr:any[]):BuildingCostVo[] {

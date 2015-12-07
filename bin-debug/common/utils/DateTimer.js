@@ -43,6 +43,9 @@ var DateTimer = (function () {
         this.run1sTicker();
     };
     /**
+     * ========================== 网络动画同步 ========================
+     */
+    /**
      * 启动同步数据的计时器
      */
     p.runSyncTicker = function () {
@@ -50,6 +53,12 @@ var DateTimer = (function () {
         timer.addEventListener(egret.TimerEvent.TIMER, this.onSyncTimer, this);
         timer.start();
     };
+    p.onSyncTimer = function () {
+        Player.instance.saveToNet();
+    };
+    /**
+     * ========================== 1s动画 ========================
+     */
     /**
      * 启动1s计时器
      */
@@ -58,14 +67,13 @@ var DateTimer = (function () {
         timer.addEventListener(egret.TimerEvent.TIMER, this.onOneSecondTimer, this);
         timer.start();
     };
-    p.onSyncTimer = function () {
-        Player.instance.saveToNet();
-    };
     p.onOneSecondTimer = function () {
         //刷新建筑cd
         Player.instance.updateBuildQueue();
         //自动产出资源
         Player.instance.autoOutputResource();
+        //1s定时器更新
+        OneTimerTicker.instance.update();
     };
     return DateTimer;
 })();

@@ -56,6 +56,14 @@ class HashMap<K,V> {
         return arr;
     }
 
+    public values():V[]{
+        var arr:V[] = [];
+        for (var key in this.data) {
+            arr.push(this.data[key]);
+        }
+        return arr;
+    }
+
     /**
      * 重新设置
      * @param obj

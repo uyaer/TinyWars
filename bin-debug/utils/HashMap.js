@@ -53,6 +53,13 @@ var HashMap = (function () {
         }
         return arr;
     };
+    p.values = function () {
+        var arr = [];
+        for (var key in this.data) {
+            arr.push(this.data[key]);
+        }
+        return arr;
+    };
     /**
      * 重新设置
      * @param obj

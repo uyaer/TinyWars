@@ -124,7 +124,7 @@ class BuildingDataManager {
         canUpLvArr = [0, 0, 0];
         hasCostResNum = [0, 0, 0];
         maxUpCount = minLv;
-        for (i=0; i < costArr.length; i++) {
+        for (i = 0; i < costArr.length; i++) {
             var costVo:BuildingCostVo = costArr[i];
             var lv = Player.instance.vo.building.get(buildingId, 0);
             for (var j = 0; j < 51; j++) {
@@ -151,4 +151,33 @@ class BuildingDataManager {
         //将值设置到缓存
         this.buildingCanUpLevel.set(buildingId, minLv);
     }
+
+    /**
+     * 获取工厂可以产出的数量（原料可能不够）
+     * @param resId
+     */
+    public getFactoryOutputNumberByResourceId(resId:number):BuildingVo {
+        var vo:BuildingVo;
+        var buildings = this.buildingDataBaseMap.values();
+        for (var i = 0; i < buildings.length; i++) {
+            vo = buildings[i];
+            if (vo.stype == BuildingCategory.FACTORY && vo.pValueId == resId) {
+                break;
+            }
+        }
+
+        if (!Player.instance.vo.factory.get(vo.id, false)) { //工厂没有打开，直接返回0
+            vo.factoryCacheOutputNumber = 0;
+            return vo;
+        }
+        var num:number = Player.instance.vo.building.get(vo.id);
+        //TODO 技能的加成
+        for (var i = 0; i < vo.costBaseResIdArr.length; i++) {
+            num = Math.min(int(Player.instance.getResourceCount(vo.costBaseResIdArr[i]) / vo.rate), num);
+        }
+
+        vo.factoryCacheOutputNumber = num;
+        return vo;
+    }
+
 }

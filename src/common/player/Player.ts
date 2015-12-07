@@ -31,6 +31,13 @@ class Player {
         return Math.pow(10, this.buildNumberIndex);
     }
 
+    /**
+     * 点击资源可以获得的数量
+     * //TODO 登录后需要根据科技来刷新值
+     * @type {number}
+     */
+    public clickResCount:number = 1;
+
 
     private _vo:UserVo = new UserVo();
     public get vo() {
@@ -103,7 +110,7 @@ class Player {
      * @returns {number}
      */
     public getResourceCount(type:number):number {
-        return this._vo.resource.get(type) || 0;
+        return this._vo.resource.get(type, 0);
     }
 
     /**
@@ -159,13 +166,6 @@ class Player {
      */
 
     /**
-     * 点击资源可以获得的数量
-     * //TODO 登录后需要根据科技来刷新值
-     * @type {number}
-     */
-    public clickResCount:number = 1;
-
-    /**
      * 资源增加速率
      * @type {HashMap<number, number>}
      */
@@ -201,12 +201,24 @@ class Player {
      * 自动产生资源
      */
     public autoOutputResource() {
+        //基础资源
         var addRateKeys = this.resourceAddRate.keys();
         var addRateIds:number[] = [];
         var addResValues:number[] = [];
         for (var i = 0; i < addRateKeys.length; i++) {
             var resId = addRateKeys[i];
             var num:number = this.resourceAddRate.get(resId);
+            //如果是工厂的话，需要判断工厂是否开工了
+            if (Util.isElinArr(resId, BuildingCategory.factoryGroup)) {
+                var bvo:BuildingVo = BuildingDataManager.instance.getFactoryOutputNumberByResourceId(resId);
+                num = bvo.factoryCacheOutputNumber;
+                if (bvo.factoryCacheOutputNumber > 0) { //工厂能生产，需要扣除原料
+                    for (var j = 0; j < bvo.costBaseResIdArr.length; j++) {
+                        addRateIds.push(bvo.costBaseResIdArr[j]);
+                        addResValues.push(num * bvo.rate);
+                    }
+                }
+            }
             if (num > 0) {
                 addRateIds.push(int(resId));
                 addResValues.push(num);
@@ -215,6 +227,13 @@ class Player {
         addRateKeys = null;
         this.addResourceCountBatch(addRateIds, addResValues);
     }
+
+    public changeFactoryOpenState(factoryId:number, isOpen:boolean) {
+        this.vo.factory.set(factoryId, isOpen);
+        this.calResourceAddRate();
+        this.saveToNet();
+    }
+
 
     /**
      * ============================== 建筑等级相关 ===============================
@@ -232,6 +251,8 @@ class Player {
             this.calResourceAddRate();
         } else if (Util.isElinArr(id, BuildingCategory.storeGroup)) { //仓库变化，资源上限进行变化
             this.calStoreCapacity();
+        } else if (Util.isElinArr(id, BuildingCategory.factoryGroup)) { //工厂变化，工厂产能变化
+            this.calResourceAddRate();
         }
     }
 

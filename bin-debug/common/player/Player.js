@@ -8,6 +8,12 @@ var Player = (function () {
          * @type {number}
          */
         this.buildNumberIndex = 0;
+        /**
+         * 点击资源可以获得的数量
+         * //TODO 登录后需要根据科技来刷新值
+         * @type {number}
+         */
+        this.clickResCount = 1;
         this._vo = new UserVo();
         /**
          * ============================== 资源仓库大小，资源上限 ===============================
@@ -20,12 +26,6 @@ var Player = (function () {
         /**
          * ============================== 资源获得速率 ===============================
          */
-        /**
-         * 点击资源可以获得的数量
-         * //TODO 登录后需要根据科技来刷新值
-         * @type {number}
-         */
-        this.clickResCount = 1;
         /**
          * 资源增加速率
          * @type {HashMap<number, number>}
@@ -108,7 +108,7 @@ var Player = (function () {
      * @returns {number}
      */
     p.getResourceCount = function (type) {
-        return this._vo.resource.get(type) || 0;
+        return this._vo.resource.get(type, 0);
     };
     /**
      * 添加资源数量 (也可能是减少)
@@ -187,12 +187,24 @@ var Player = (function () {
      * 自动产生资源
      */
     p.autoOutputResource = function () {
+        //基础资源
         var addRateKeys = this.resourceAddRate.keys();
         var addRateIds = [];
         var addResValues = [];
         for (var i = 0; i < addRateKeys.length; i++) {
             var resId = addRateKeys[i];
             var num = this.resourceAddRate.get(resId);
+            //如果是工厂的话，需要判断工厂是否开工了
+            if (Util.isElinArr(resId, BuildingCategory.factoryGroup)) {
+                var bvo = BuildingDataManager.instance.getFactoryOutputNumberByResourceId(resId);
+                num = bvo.factoryCacheOutputNumber;
+                if (bvo.factoryCacheOutputNumber > 0) {
+                    for (var j = 0; j < bvo.costBaseResIdArr.length; j++) {
+                        addRateIds.push(bvo.costBaseResIdArr[j]);
+                        addResValues.push(num * bvo.rate);
+                    }
+                }
+            }
             if (num > 0) {
                 addRateIds.push(int(resId));
                 addResValues.push(num);
@@ -200,6 +212,11 @@ var Player = (function () {
         }
         addRateKeys = null;
         this.addResourceCountBatch(addRateIds, addResValues);
+    };
+    p.changeFactoryOpenState = function (factoryId, isOpen) {
+        this.vo.factory.set(factoryId, isOpen);
+        this.calResourceAddRate();
+        this.saveToNet();
     };
     /**
      * ============================== 建筑等级相关 ===============================
@@ -217,6 +234,9 @@ var Player = (function () {
         }
         else if (Util.isElinArr(id, BuildingCategory.storeGroup)) {
             this.calStoreCapacity();
+        }
+        else if (Util.isElinArr(id, BuildingCategory.factoryGroup)) {
+            this.calResourceAddRate();
         }
     };
     /**

@@ -46,6 +46,8 @@ var game_file_list = [
 	"bin-debug/common/utils/DateTimer.js",
 	"bin-debug/common/utils/preload/PreLoadQueue.js",
 	"bin-debug/common/utils/preload/ResQueueNode.js",
+	"bin-debug/common/utils/update/IUpdate.js",
+	"bin-debug/common/utils/update/OneTimerTicker.js",
 	"bin-debug/game/scenes/login/LoginScene.js",
 	"bin-debug/game/scenes/main/common/button/SimpleTabItemButton.js",
 	"bin-debug/game/scenes/main/common/button/WrapTabItemButton.js",
