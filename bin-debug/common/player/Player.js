@@ -14,7 +14,7 @@ var Player = (function () {
          */
         /**
          * 点击资源可以获得的数量
-         * //TODO 登录后需要根据科技来刷新值
+         * // 登录后需要根据科技来刷新值
          * @type {number}
          */
         this.clickResCount = 1;
@@ -34,6 +34,14 @@ var Player = (function () {
          * @type {HashMap<number, number>}
          */
         this.resourceAddRate = new HashMap();
+        /**
+         * ============================== 军队信息 ===============================
+         */
+        /**
+         * 军队等级信息
+         * @type {HashMap<number, number>}
+         */
+        this.armyLevelMap = new HashMap();
         if (Player._instance) {
             throw new Error("Player使用单例");
         }
@@ -107,11 +115,20 @@ var Player = (function () {
         this.clickResCount = count;
     };
     p.calStoreCapacity = function () {
+        this.resourceCapacity.clear();
         var buildingKeys = BuildingCategory.storeGroup;
         for (var i = 0; i < buildingKeys.length; i++) {
             var bvo = BuildingDataManager.instance.buildingDataBaseMap.get(buildingKeys[i]);
             if (bvo.ptype == BuildingProduct.STORE) {
                 var lv = this.vo.building.get(bvo.id, 0) + 1;
+                this.resourceCapacity.set(bvo.pValueId, lv * bvo.value);
+            }
+        }
+        var buildingKeys = BuildingCategory.warGroup;
+        for (var i = 0; i < buildingKeys.length; i++) {
+            var bvo = BuildingDataManager.instance.buildingDataBaseMap.get(buildingKeys[i]);
+            if (bvo.ptype == BuildingProduct.STORE) {
+                var lv = this.vo.building.get(bvo.id, 0);
                 this.resourceCapacity.set(bvo.pValueId, lv * bvo.value);
             }
         }
@@ -193,6 +210,7 @@ var Player = (function () {
      * 计算资源增加速率
      */
     p.calResourceAddRate = function () {
+        this.resourceAddRate.clear();
         //建筑这块
         var buildingKeys = this.vo.building.keys();
         for (var i = 0; i < buildingKeys.length; i++) {
@@ -296,10 +314,40 @@ var Player = (function () {
             this.calResourceAddRate();
         }
         else if (tvo.ptype == TechnologyCategory.WAR) {
+            this.calArmyLevel();
         }
         else if (tvo.ptype == TechnologyCategory.GATHER) {
             this.calClickGatherResCount();
         }
+    };
+    /**
+     * 计算军队等级
+     */
+    p.calArmyLevel = function () {
+        this.armyLevelMap.clear();
+        var len = this.vo.technology.length;
+        for (var i = 0; i < len; i++) {
+            var tvo = TechnologyDataManager.instance.technologyDataBaseMap.get(this.vo.technology[i]);
+            if (tvo.ptype == TechnologyCategory.WAR || tvo.ptype == TechnologyCategory.BUILDING) {
+                this.armyLevelMap.add(tvo.pValueId, tvo.value);
+            }
+        }
+    };
+    /**
+     * 获取军队的等级
+     * @param id
+     * @returns {number}
+     */
+    p.getArmyLevel = function (id) {
+        return this.armyLevelMap.get(id, 1);
+    };
+    /**
+     * 创建军队
+     * @param id
+     * @param num
+     */
+    p.armyCreate = function (id, num) {
+        this.addResourceCount(id, num);
     };
     /**
      * ============================== 建筑队列 ===============================
@@ -370,6 +418,9 @@ var Player = (function () {
                 break;
             case GameModule.TECHNOLOGY:
                 this.technologyUp(vo.id);
+                break;
+            case GameModule.WAR:
+                this.armyCreate(vo.id, vo.value);
                 break;
         }
     };

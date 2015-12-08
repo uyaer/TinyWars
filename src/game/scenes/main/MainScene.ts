@@ -16,6 +16,8 @@ class MainScene extends SceneBase {
         BuildingDataManager.instance.init(data["building"]);
         //科技数据
         TechnologyDataManager.instance.init(data["technology"]);
+        //军队数据
+        ArmyDataManager.instance.init(data["army"]);
 
 
         Player.instance.init();
@@ -119,7 +121,8 @@ class MainScene extends SceneBase {
 
 
     private onMenuTabItemChange(index:number) {
-        var arr = [ClickResPanel, BuildingGroupPanel, TechnologyGroupPanel];
+        var arr = [ClickResPanel, BuildingGroupPanel, TechnologyGroupPanel,
+            WarGroupPanel];
         if (this.viewPanel) {
             this.viewPanel.hide();
         }

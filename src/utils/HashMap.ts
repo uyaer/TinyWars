@@ -48,6 +48,10 @@ class HashMap<K,V> {
         delete this.data[K];
     }
 
+    public clear(){
+        this.data = {};
+    }
+
     public keys():K[] {
         var arr:K[] = [];
         for (var key in this.data) {

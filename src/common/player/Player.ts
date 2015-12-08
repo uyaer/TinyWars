@@ -106,11 +106,20 @@ class Player {
     private resourceCapacity:HashMap<number,number> = new HashMap<number,number>();
 
     private calStoreCapacity() {
+        this.resourceCapacity.clear();
         var buildingKeys = BuildingCategory.storeGroup;
         for (var i = 0; i < buildingKeys.length; i++) {
             var bvo = BuildingDataManager.instance.buildingDataBaseMap.get(buildingKeys[i]);
             if (bvo.ptype == BuildingProduct.STORE) {
                 var lv:number = this.vo.building.get(bvo.id, 0) + 1;
+                this.resourceCapacity.set(bvo.pValueId, lv * bvo.value);
+            }
+        }
+        var buildingKeys = BuildingCategory.warGroup;
+        for (var i = 0; i < buildingKeys.length; i++) {
+            var bvo = BuildingDataManager.instance.buildingDataBaseMap.get(buildingKeys[i]);
+            if (bvo.ptype == BuildingProduct.STORE) {
+                var lv:number = this.vo.building.get(bvo.id, 0);
                 this.resourceCapacity.set(bvo.pValueId, lv * bvo.value);
             }
         }
@@ -204,6 +213,7 @@ class Player {
      * 计算资源增加速率
      */
     public calResourceAddRate() {
+        this.resourceAddRate.clear();
         //建筑这块
         var buildingKeys = this.vo.building.keys();
         for (var i = 0; i < buildingKeys.length; i++) {
@@ -311,10 +321,51 @@ class Player {
         } else if (tvo.ptype == TechnologyCategory.FACTORY) {//工业技术
             this.calResourceAddRate();
         } else if (tvo.ptype == TechnologyCategory.WAR) {//军事士兵升级
-            //TODO 军事士兵升级
+            this.calArmyLevel();
         } else if (tvo.ptype == TechnologyCategory.GATHER) {//采集速度
             this.calClickGatherResCount();
         }
+    }
+
+    /**
+     * ============================== 军队信息 ===============================
+     */
+    /**
+     * 军队等级信息
+     * @type {HashMap<number, number>}
+     */
+    private armyLevelMap:HashMap<number,number> = new HashMap<number,number>();
+
+    /**
+     * 计算军队等级
+     */
+    private calArmyLevel() {
+        this.armyLevelMap.clear();
+        var len = this.vo.technology.length;
+        for (var i = 0; i < len; i++) {
+            var tvo:TechnologyVo = TechnologyDataManager.instance.technologyDataBaseMap.get(this.vo.technology[i]);
+            if (tvo.ptype == TechnologyCategory.WAR || tvo.ptype == TechnologyCategory.BUILDING) {
+                this.armyLevelMap.add(tvo.pValueId, tvo.value);
+            }
+        }
+    }
+
+    /**
+     * 获取军队的等级
+     * @param id
+     * @returns {number}
+     */
+    public getArmyLevel(id:number):number {
+        return this.armyLevelMap.get(id, 1);
+    }
+
+    /**
+     * 创建军队
+     * @param id
+     * @param num
+     */
+    private armyCreate(id:number, num:number) {
+        this.addResourceCount(id, num);
     }
 
     /**
@@ -389,6 +440,9 @@ class Player {
                 break;
             case GameModule.TECHNOLOGY:
                 this.technologyUp(vo.id);
+                break;
+            case GameModule.WAR:
+                this.armyCreate(vo.id,vo.value);
                 break;
         }
     }

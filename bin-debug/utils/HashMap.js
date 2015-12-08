@@ -46,6 +46,9 @@ var HashMap = (function () {
         this.data[K] = undefined;
         delete this.data[K];
     };
+    p.clear = function () {
+        this.data = {};
+    };
     p.keys = function () {
         var arr = [];
         for (var key in this.data) {
