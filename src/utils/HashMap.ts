@@ -69,7 +69,9 @@ class HashMap<K,V> {
      * @param obj
      */
     public reset(obj) {
-        this.data = obj.data || obj;
+        if(obj){
+            this.data = obj.data || obj;
+        }
     }
 
     /**
@@ -77,8 +79,10 @@ class HashMap<K,V> {
      * @param str
      */
     public parse(str:string) {
-        var obj = JSON.parse(str);
-        this.data = obj.data;
+        if(str){
+            var obj = JSON.parse(str);
+            this.data = obj.data;
+        }
     }
 
     public toString() {

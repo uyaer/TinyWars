@@ -3,3 +3,4 @@ libs/modules/
 bin-debug/
 bin-release/
 .idea/workspace.xml
+bin-debug/common/

@@ -7,6 +7,11 @@ var EventName = (function () {
      * @type {string}
      */
     EventName.RESOURCE_CHANGE = "resource_change";
+    /**
+     * 科技改变
+     * @type {string}
+     */
+    EventName.TECHNOLOGY_CHANGE = "technology_change";
     return EventName;
 })();
 egret.registerClass(EventName,"EventName");

@@ -45,12 +45,17 @@ var PanelBase = (function (_super) {
         }
     );
     p.init = function (resGroup) {
-        this._resGroup = resGroup;
-        this._isResLoaded = false;
-        egret.setTimeout(this.showPreLoading, this, 50);
-        RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onGroupResourceLoaded, this);
-        RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
-        RES.loadGroup(resGroup);
+        if (resGroup) {
+            this._resGroup = resGroup;
+            this._isResLoaded = false;
+            egret.setTimeout(this.showPreLoading, this, 50);
+            RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onGroupResourceLoaded, this);
+            RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
+            RES.loadGroup(resGroup);
+        }
+        else {
+            this.onGroupResourceLoadedThenAddToStage();
+        }
     };
     p.showPreLoading = function () {
         if (!this._isResLoaded) {
@@ -74,16 +79,19 @@ var PanelBase = (function (_super) {
             PanelLoading.instance.hide();
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onGroupResourceLoaded, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onGroupResourceLoaded, this);
-            this.skinName = null;
-            if (this.uiSkinName) {
-                this.skinName = this.uiSkinName;
-            }
-            if (this._viewParent) {
-                this._viewParent.addChild(this);
-            }
-            else {
-                GameLayerManager.instance.popLayer.addChild(this);
-            }
+            this.onGroupResourceLoadedThenAddToStage();
+        }
+    };
+    p.onGroupResourceLoadedThenAddToStage = function () {
+        this.skinName = null;
+        if (this.uiSkinName) {
+            this.skinName = this.uiSkinName;
+        }
+        if (this._viewParent) {
+            this._viewParent.addChild(this);
+        }
+        else {
+            GameLayerManager.instance.popLayer.addChild(this);
         }
     };
     p.createChildren = function () {

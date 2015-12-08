@@ -9,6 +9,8 @@ class UserVo {
     public building:HashMap<number,number> = new HashMap<number,number>();
     /****** 工厂开工情况(key是工厂id) *******/
     public factory:HashMap<number,boolean> = new HashMap<number,boolean>();
+    /****** 已经升级了的科技 *******/
+    public technology:number[] = [];
     /****** 建筑队列 *******/
     public buildQueue:BuildQueueVo[] = [];
 

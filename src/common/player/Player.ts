@@ -47,6 +47,8 @@ class Player {
     public dealLoginSuccess(data) {
         this._vo.resource.reset(data["resource"]);
         this._vo.building.reset(data["building"]);
+        this._vo.factory.reset(data["factory"]);
+        this._vo.technology = data["technology"] || [];
         //建筑队列
         var arr = data["buildQueue"] || [];
         for (var i = 0; i < arr.length; i++) {
@@ -257,11 +259,19 @@ class Player {
             this.calStoreCapacity();
         } else if (Util.isElinArr(id, BuildingCategory.factoryGroup)) { //工厂变化，工厂产能变化
             this.calResourceAddRate();
-        }else if (Util.isElinArr(id, BuildingCategory.warGroup)) { //军事变化，士兵上限进行变化
+        } else if (Util.isElinArr(id, BuildingCategory.warGroup)) { //军事变化，士兵上限进行变化
             this.calStoreCapacity();
         }
     }
 
+    /**
+     * 科技升级
+     * @param id 科技id
+     */
+    public technologyUp(id:number) {
+        this.vo.technology.push(id);
+        EventManager.instance.dispatch(EventName.TECHNOLOGY_CHANGE);
+    }
 
     /**
      * ============================== 建筑队列 ===============================
@@ -332,6 +342,9 @@ class Player {
         switch (vo.module) {
             case GameModule.BUILDING:
                 this.buildingLevelChang(vo.id, vo.value);
+                break;
+            case GameModule.TECHNOLOGY:
+                this.technologyUp(vo.id);
                 break;
         }
     }

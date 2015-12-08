@@ -65,15 +65,19 @@ var HashMap = (function () {
      * @param obj
      */
     p.reset = function (obj) {
-        this.data = obj.data || obj;
+        if (obj) {
+            this.data = obj.data || obj;
+        }
     };
     /**
      * 将toJSON后的str数据转化回来
      * @param str
      */
     p.parse = function (str) {
-        var obj = JSON.parse(str);
-        this.data = obj.data;
+        if (str) {
+            var obj = JSON.parse(str);
+            this.data = obj.data;
+        }
     };
     p.toString = function () {
         return JSON.stringify(this.data);

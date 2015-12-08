@@ -14,6 +14,8 @@ class MainScene extends SceneBase {
         var data = RES.getRes("data_json");
         //建筑数据
         BuildingDataManager.instance.init(data["building"]);
+        //科技数据
+        TechnologyDataManager.instance.init(data["technology"]);
 
 
         Player.instance.init();
@@ -117,7 +119,7 @@ class MainScene extends SceneBase {
 
 
     private onMenuTabItemChange(index:number) {
-        var arr = [ClickResPanel, BuildingGroupPanel];
+        var arr = [ClickResPanel, BuildingGroupPanel, TechnologyGroupPanel];
         if (this.viewPanel) {
             this.viewPanel.hide();
         }

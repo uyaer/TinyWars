@@ -6,8 +6,6 @@ class BuildingItemBase extends BuildItemBase {
     public constructor(type) {
         super(type);
 
-        this.fixedMax = false;
-
         this.vo = BuildingDataManager.instance.buildingDataBaseMap.get(type);
     }
 
@@ -82,7 +80,6 @@ class BuildingItemBase extends BuildItemBase {
      * @override
      */
     public updateBuildNumber() {
-        if (this.fixedMax)return;
         // 计算最大值
         var maxNum:number = BuildingDataManager.instance.buildingCanUpLevel.get(this.type, 1);
         var isCanUp:boolean = BuildingDataManager.instance.buildingIsCanUpLevel.get(this.type);

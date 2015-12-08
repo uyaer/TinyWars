@@ -1,10 +1,5 @@
 class BuildItemBase extends eui.ItemRenderer implements IUpdate {
     protected type:number;
-    /**
-     * 建造最大值是否是固定的
-     * @type {boolean}
-     */
-    protected fixedMax:boolean = false;
 
     public constructor(type) {
         super();
@@ -21,10 +16,7 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
 
         this.addEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoved, this);
-        if (!this.fixedMax) { //最大建造
-            EventManager.instance.addEvent(EventName.RESOURCE_CHANGE,
-                this.onResourceChange, this);
-        }
+        EventManager.instance.addEvent(EventName.RESOURCE_CHANGE, this.onResourceChange, this);
 
         OneTimerTicker.instance.add(this);
     }
@@ -34,10 +26,7 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
      */
     protected onRemoved() {
         this.removeEventListener(egret.Event.REMOVED_FROM_STAGE, this.onRemoved, this);
-        if (!this.fixedMax) {
-            EventManager.instance.removeEvent(EventName.RESOURCE_CHANGE,
-                this.onResourceChange, this);
-        }
+        EventManager.instance.removeEvent(EventName.RESOURCE_CHANGE, this.onResourceChange, this);
         UIUtils.removeButtonScaleEffects(this);
 
         OneTimerTicker.instance.remove(this);
@@ -90,14 +79,11 @@ class BuildItemBase extends eui.ItemRenderer implements IUpdate {
 
         UIUtils.addButtonScaleEffects(this);
 
-        if (!this.fixedMax) {
-            this.updateBuildNumber();
-        }
+        this.updateBuildNumber();
 
         this.updateView();
 
-        this.buildBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,
-            this.onBuildClick, this);
+        this.buildBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBuildClick, this);
     }
 
     protected onBuildClick() {

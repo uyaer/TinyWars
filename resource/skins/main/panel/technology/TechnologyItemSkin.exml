@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TechnologyItemSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="640">
+	<e:Image source="item_bg_png" scale9Grid="12,32,7,22" width="350" x="143" y="11"/>
+	<e:Label id="nameTF" text="铁匠铺" x="149" y="14" size="20"/>
+	<e:Label id="descTF" size="18" y="41" text="食物生产速度" x="149" textColor="0xF3EFEF"/>
+	<e:Image id="icon" x="45" y="-1" width="100" height="100"/>
+	<e:Button id="buildBtn" label="+1" horizontalCenter="234" verticalCenter="-0.5">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn_building_png" source.disabled="btn_building_gray_png"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Group id="costGroup" width="324" height="26" x="152" y="60">
+	</e:Group>
+	<e:Label y="40" textColor="0x74DB00" text="100/s" id="effectTF" size="20" x="271"/>
+</e:Skin>

@@ -9,6 +9,8 @@ var UserVo = (function () {
         this.building = new HashMap();
         /****** 工厂开工情况(key是工厂id) *******/
         this.factory = new HashMap();
+        /****** 已经升级了的科技 *******/
+        this.technology = [];
         /****** 建筑队列 *******/
         this.buildQueue = [];
     }

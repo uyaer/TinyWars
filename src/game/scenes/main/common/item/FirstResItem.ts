@@ -21,10 +21,10 @@ class FirstResItem extends ResItemBase {
         //数量颜色
         var num = Player.instance.getResourceCount(this.resType);
         var max = Player.instance.getResourceCapacity(this.resType);
-        if (num < max) {
-            this.numTF.textColor = 0x4CD00A;
-        } else {
-            this.numTF.textColor = 0xE91138;
+        if (num < max) { //足够
+            this.numTF.textColor = Const.GREEN;
+        } else {//不足
+            this.numTF.textColor = Const.RED;
         }
     }
 }

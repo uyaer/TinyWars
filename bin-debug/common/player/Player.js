@@ -61,6 +61,8 @@ var Player = (function () {
     p.dealLoginSuccess = function (data) {
         this._vo.resource.reset(data["resource"]);
         this._vo.building.reset(data["building"]);
+        this._vo.factory.reset(data["factory"]);
+        this._vo.technology = data["technology"] || [];
         //建筑队列
         var arr = data["buildQueue"] || [];
         for (var i = 0; i < arr.length; i++) {
@@ -247,6 +249,14 @@ var Player = (function () {
         }
     };
     /**
+     * 科技升级
+     * @param id 科技id
+     */
+    p.technologyUp = function (id) {
+        this.vo.technology.push(id);
+        EventManager.instance.dispatch(EventName.TECHNOLOGY_CHANGE);
+    };
+    /**
      * ============================== 建筑队列 ===============================
      */
     /**
@@ -312,6 +322,9 @@ var Player = (function () {
         switch (vo.module) {
             case GameModule.BUILDING:
                 this.buildingLevelChang(vo.id, vo.value);
+                break;
+            case GameModule.TECHNOLOGY:
+                this.technologyUp(vo.id);
                 break;
         }
     };
