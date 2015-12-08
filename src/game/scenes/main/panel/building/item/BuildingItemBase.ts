@@ -48,7 +48,7 @@ class BuildingItemBase extends BuildItemBase {
         var cd = this.vo.cd_time * maxNum * 1000;
         var qvo:BuildQueueVo = Player.instance.addBuidQueue(GameModule.BUILDING, this.vo.id, cd, maxNum, maxNum > 1);
         if (maxNum > 1 && qvo) {
-            //TODO 建筑按钮状态
+            // 建筑按钮状态
 
             this.updateBuildNumber();
             this.addBuildProgress(qvo);

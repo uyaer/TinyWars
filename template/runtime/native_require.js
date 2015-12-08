@@ -27,6 +27,7 @@ var game_file_list = [
 	"bin-debug/common/player/enum/ConstName.js",
 	"bin-debug/common/player/enum/GameModule.js",
 	"bin-debug/common/player/enum/ResType.js",
+	"bin-debug/common/player/enum/TechnologyType.js",
 	"bin-debug/common/player/Player.js",
 	"bin-debug/common/player/ResourceCostVo.js",
 	"bin-debug/common/player/UserVo.js",

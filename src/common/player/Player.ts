@@ -31,14 +31,6 @@ class Player {
         return Math.pow(10, this.buildNumberIndex);
     }
 
-    /**
-     * 点击资源可以获得的数量
-     * //TODO 登录后需要根据科技来刷新值
-     * @type {number}
-     */
-    public clickResCount:number = 1;
-
-
     private _vo:UserVo = new UserVo();
     public get vo() {
         return this._vo;
@@ -63,6 +55,7 @@ class Player {
         //计算各种速率
         this.calResourceAddRate();
         this.calStoreCapacity();
+        this.calClickGatherResCount();
     }
 
     /**
@@ -70,6 +63,36 @@ class Player {
      */
     public saveToNet() {
         UserNet.instance.save(JSON.stringify(this._vo));
+    }
+
+    /**
+     * ============================== 点击采集资源 ===============================
+     */
+
+    /**
+     * 点击资源可以获得的数量
+     * // 登录后需要根据科技来刷新值
+     * @type {number}
+     */
+    public clickResCount:number = 1;
+
+    /**
+     * 计算点击可以采集的资源
+     */
+    private calClickGatherResCount() {
+        var count:number = 1;
+        var id:number = TechnologyCategory.GATHER * 100 + 1;
+        var flag = true;
+        while (flag && id > 0) {
+            if (Util.isElinArr(id, this.vo.technology)) {
+                var tvo:TechnologyVo = TechnologyDataManager.instance.technologyDataBaseMap.get(id);
+                count += tvo.value;
+                id = tvo.next_id;
+            } else {
+                flag = false;
+            }
+        }
+        this.clickResCount = count;
     }
 
     /**
@@ -190,8 +213,15 @@ class Player {
             }
         }
 
-        //TODO 科技这一块
-        //TODO 工厂
+        // 科技这一块
+        var len = this.vo.technology.length;
+        for (var i = 0; i < len; i++) {
+            var tvo:TechnologyVo = TechnologyDataManager.instance.technologyDataBaseMap.get(this.vo.technology[i]);
+            if (tvo.ptype == TechnologyCategory.RESOURCE || tvo.ptype == TechnologyCategory.FACTORY) {
+                this.resourceAddRate.add(tvo.pValueId, tvo.value);
+            }
+        }
+
     }
 
     /**
@@ -269,8 +299,22 @@ class Player {
      * @param id 科技id
      */
     public technologyUp(id:number) {
-        this.vo.technology.push(id);
+        if (!Util.isElinArr(id, this.vo.technology)) {
+            this.vo.technology.push(id);
+        }
         EventManager.instance.dispatch(EventName.TECHNOLOGY_CHANGE);
+        var tvo:TechnologyVo = TechnologyDataManager.instance.technologyDataBaseMap.get(id);
+        if (tvo.ptype == TechnologyCategory.BUILDING) { //建造
+            //TODO 建造
+        } else if (tvo.ptype == TechnologyCategory.RESOURCE) {//资源技术
+            this.calResourceAddRate();
+        } else if (tvo.ptype == TechnologyCategory.FACTORY) {//工业技术
+            this.calResourceAddRate();
+        } else if (tvo.ptype == TechnologyCategory.WAR) {//军事士兵升级
+            //TODO 军事士兵升级
+        } else if (tvo.ptype == TechnologyCategory.GATHER) {//采集速度
+            this.calClickGatherResCount();
+        }
     }
 
     /**

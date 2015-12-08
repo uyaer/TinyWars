@@ -8,13 +8,16 @@ var Player = (function () {
          * @type {number}
          */
         this.buildNumberIndex = 0;
+        this._vo = new UserVo();
+        /**
+         * ============================== 点击采集资源 ===============================
+         */
         /**
          * 点击资源可以获得的数量
          * //TODO 登录后需要根据科技来刷新值
          * @type {number}
          */
         this.clickResCount = 1;
-        this._vo = new UserVo();
         /**
          * ============================== 资源仓库大小，资源上限 ===============================
          */
@@ -76,12 +79,32 @@ var Player = (function () {
         //计算各种速率
         this.calResourceAddRate();
         this.calStoreCapacity();
+        this.calClickGatherResCount();
     };
     /**
      * 网络保存
      */
     p.saveToNet = function () {
         UserNet.instance.save(JSON.stringify(this._vo));
+    };
+    /**
+     * 计算点击可以采集的资源
+     */
+    p.calClickGatherResCount = function () {
+        var count = 1;
+        var id = TechnologyCategory.GATHER * 100 + 1;
+        var flag = true;
+        while (flag && id > 0) {
+            if (Util.isElinArr(id, this.vo.technology)) {
+                var tvo = TechnologyDataManager.instance.technologyDataBaseMap.get(id);
+                count += tvo.value;
+                id = tvo.next_id;
+            }
+            else {
+                flag = false;
+            }
+        }
+        this.clickResCount = count;
     };
     p.calStoreCapacity = function () {
         var buildingKeys = BuildingCategory.storeGroup;
@@ -178,8 +201,14 @@ var Player = (function () {
                 this.resourceAddRate.set(bvo.pValueId, this.vo.building.get(bvo.id, 0) * bvo.value);
             }
         }
-        //TODO 科技这一块
-        //TODO 工厂
+        // 科技这一块
+        var len = this.vo.technology.length;
+        for (var i = 0; i < len; i++) {
+            var tvo = TechnologyDataManager.instance.technologyDataBaseMap.get(this.vo.technology[i]);
+            if (tvo.ptype == TechnologyCategory.RESOURCE || tvo.ptype == TechnologyCategory.FACTORY) {
+                this.resourceAddRate.add(tvo.pValueId, tvo.value);
+            }
+        }
     };
     /**
      * 获取某一资源的增加速率
@@ -253,8 +282,24 @@ var Player = (function () {
      * @param id 科技id
      */
     p.technologyUp = function (id) {
-        this.vo.technology.push(id);
+        if (!Util.isElinArr(id, this.vo.technology)) {
+            this.vo.technology.push(id);
+        }
         EventManager.instance.dispatch(EventName.TECHNOLOGY_CHANGE);
+        var tvo = TechnologyDataManager.instance.technologyDataBaseMap.get(id);
+        if (tvo.ptype == TechnologyCategory.BUILDING) {
+        }
+        else if (tvo.ptype == TechnologyCategory.RESOURCE) {
+            this.calResourceAddRate();
+        }
+        else if (tvo.ptype == TechnologyCategory.FACTORY) {
+            this.calResourceAddRate();
+        }
+        else if (tvo.ptype == TechnologyCategory.WAR) {
+        }
+        else if (tvo.ptype == TechnologyCategory.GATHER) {
+            this.calClickGatherResCount();
+        }
     };
     /**
      * ============================== 建筑队列 ===============================

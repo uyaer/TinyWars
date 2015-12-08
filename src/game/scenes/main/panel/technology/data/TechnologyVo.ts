@@ -11,8 +11,14 @@ class TechnologyVo {
      * 大类的关联
      */
     condi:number;
+    /**
+     * 分类id
+     */
     ptype:number;
-    etype:number;
+    /**
+     * 效果对应的id
+     */
+    pValueId:number;
     /**
      * 效果值
      */
@@ -47,7 +53,7 @@ class TechnologyVo {
         this.condi = obj["condi"];
         this.cost = this.getCost(obj["cost"]);
         this.ptype = obj["ptype"];
-        this.etype = obj["etype"];
+        this.pValueId = obj["pValueId"];
         this.value = obj["value"];
         this.cd_time = obj["cd_time"];
         this.exp = obj["exp"];
