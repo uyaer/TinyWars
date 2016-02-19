@@ -3,6 +3,10 @@
  */
 class UserVo {
 
+    /****** 经验值 *******/
+    public exp:number;
+    /****** 等级 *******/
+    public level:number;
     /****** 资源 *******/
     public resource:HashMap<number,number> = new HashMap<number,number>();
     /****** 建筑 *******/
